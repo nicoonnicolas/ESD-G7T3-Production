@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class ServiceProvider(db.Model):
-    __tablename__ = 'service_provider'
+    __tablename__ = 'serviceprovider'
     
     provider_mobile = db.Column(db.String(8), primary_key=True)
     provider_service1 = db.Column(db.String(256), nullable=True)
@@ -71,4 +71,4 @@ def createServiceProvider(provider_mobile):
     
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.debug = True
-    app.run(host='0.0.0.0', port=1000, debug=True)
+    app.run(host='0.0.0.0', port=1001, debug=True)
