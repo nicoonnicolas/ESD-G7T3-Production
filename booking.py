@@ -13,16 +13,16 @@ class Review(db.Model):
     __tablename__ = 'booking'
 
     booking_id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, nullable=False)
-    provider_id = db.Column(db.Integer, nullable=False)
-    booking_time = db.Column(db.String(64), nullable=False)
+    customer_mobile = db.Column(db.String(8), nullable=False)
+    provider_mobile = db.Column(db.String(8), nullable=False)
+    booking_time = db.Column(db.Time, nullable=False)
     booking_date = db.Column(db.Date, nullable=False)
-    booking_price = db.Column(db.Double, nullable=False)
+    booking_price = db.Column(db.double(5,2), nullable=False)
 
-    def __init__(self, booking_id, customer_id, provider_id, booking_time, booking_date ,booking_price):
+    def __init__(self, booking_id, customer_mobile, provider_mobile, booking_time, booking_date ,booking_price):
         self.booking_id = booking_id
-        self.customer_id = customer_id        
-        self.provider_id = provider_id
+        self.customer_mobile = customer_mobile        
+        self.provider_mobile = provider_mobile
         self.booking_time = booking_time
         self.booking_date = booking_date
         self.booking_price = booking_price
@@ -30,8 +30,8 @@ class Review(db.Model):
     def json(self):
         return {
         "booking_id": self.booking_id, 
-        "customer_id": self.customer_id, 
-        "provider_id": self.provider_id,
+        "customer_id": self.customer_mobile, 
+        "provider_mobile": self.provider_mobile,
         "booking_time": self.booking_time,
         "booking_date": self.booking_date,
         "booking_price": self.booking_price
