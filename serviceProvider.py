@@ -41,7 +41,7 @@ def getAll():
         "seviceproviders": [serviceprovider.json() for serviceprovider in ServiceProvider.query.all()]
         }) #Book.query.all() is the same as " SELECT * FROM table_name "
 
-@app.route("/seviceprovider/<string:provider_mobile>", methods=['GET'])
+@app.route("/serviceprovider/<string:provider_mobile>", methods=['GET'])
 def findServiceProvider(provider_mobile):
     serviceprovider = ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first() 
     # .first() returns the FIRST RECORD : SELECT * FROM book WHERE isbn13 = <isbn13> LIMIT 1
@@ -50,7 +50,7 @@ def findServiceProvider(provider_mobile):
     return jsonify({"message": "Service Provider not found"}), 404
 
 
-@app.route("/seviceprovider/<string:provider_mobile>", methods=['POST'])
+@app.route("/serviceprovider/<string:provider_mobile>", methods=['POST'])
 def createServiceProvider(provider_mobile):
     if (ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first()):
         return jsonify({
