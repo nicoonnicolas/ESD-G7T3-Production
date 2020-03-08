@@ -22,16 +22,21 @@
             crossorigin="anonymous">
         </script>
 
-        <script 
+        <script
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous">
         </script>
     </head>
     <body>
-        <h1>Customers</h1>
+        <h1 class="display-4">Customers</h1>
         <div id="main_container" class="container">
-            <table id="customer_table" border="1">
+            <p>
+                <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
+                <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
+                <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
+            </p>
+            <table id="customer_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
                         <th>Customer Name</th>
