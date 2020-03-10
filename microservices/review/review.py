@@ -13,10 +13,10 @@ db = SQLAlchemy(app)
 class Review(db.Model):
     __tablename__ = "review"
     
-    review_id = db.column(db.Integer, primary_key=True)
-    booking_id = db.column(db.Integer, nullable=False)
-    review_star = db.column(db.Integer, nullable=False)
-    review_comment = db.column(db.Integer, nullable=True)
+    review_id = db.Column(db.Integer, primary_key=True)
+    booking_id = db.Column(db.Integer, nullable=False)
+    review_star = db.Column(db.Integer, nullable=False)
+    review_comment = db.Column(db.Integer, nullable=True)
 
     def __init__(self, review_id, booking_id, review_star, review_comment):
         self.review_id = review_id
