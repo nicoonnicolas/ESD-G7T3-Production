@@ -28,6 +28,12 @@
             crossorigin="anonymous">
         </script>
     </head>
+    <style>
+        body {
+            padding: 20px;
+        }    
+    </style>
+
     <body>
         <h1 class="display-4">Customers</h1>
         <div id="main_container" class="container">
@@ -35,6 +41,7 @@
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
                 <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
+                <br><br>
             </p>
             <table id="customer_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>

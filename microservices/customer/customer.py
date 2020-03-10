@@ -7,7 +7,7 @@ CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_customer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 db = SQLAlchemy(app)
 
 class Customer(db.Model):
@@ -66,4 +66,4 @@ def createCustomer(customer_mobile):
     
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.debug = True
-    app.run(host='0.0.0.0', port=1000, debug=True)
+    app.run(host = '0.0.0.0',port=1000, debug=True)
