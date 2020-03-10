@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Customers</title>
+        <title>Reviews</title>
         <meta charset="UTF-8">
         <!-- Bootstrap libraries -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,56 +28,54 @@
             crossorigin="anonymous">
         </script>
     </head>
-    <style>
-        body {
-            padding: 20px;
-        }    
-    </style>
-
     <body>
-        <h1 class="display-4">Customers</h1>
+        <h1 class="display-4">Reviews</h1>
         <div id="main_container" class="container">
             <p>
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
                 <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
-                <a class='btn btn-outline-info' href='../review/review.php'>Review</a>
-
+                <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
-            <table id="customer_table" class='table table-striped' border='1'>
+            <table id="review_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
-                        <th>Customer Name</th>
-                        <th>Mobile Number</th>
-                        <th>Address</th>
+                        <th>Review ID</th>
+                        <th>Booking ID</th>
+                        <th>Stars</th>
+                        <th>Comment</th>
                     </tr>
                 <thead class='thead-dark'>
             </table>
+            <a id="addReviewBtn" class="btn btn-primary" href="addReview.php">Add a review</a>
         </div>
         <script>
+            
             function showError(message) {
-                $("#customer_table").hide();
+                $("#review_table").hide();
                 $("#main_container").append("<label>" + message + "</label>");
             }
             $(async() => {
-                var serviceURL = "http://127.0.0.1:1000/customer";
+                var serviceURL = "http://127.0.0.1:1003/review";
                 try {
                     const response = await fetch(serviceURL, {method: "GET"});
                     const data = await response.json();
-                    var customers = data.customers;
+                    var reviews = data.reviews;
 
-                    if (!customers || !customers.length) {
-                        showError("No Customers Found!");
+                    if (!reviews || !reviews.length) {
+                        showError("No Reviews Found!");
                     } else {
                         var rows = "";
-                        for (const customer of customers) {
+                        for (const review of reviews) {
                             var eachRow =
-                                    "<td>" + customer.customer_name + "</td>" +
-                                    "<td>" + customer.customer_mobile + "</td>" +
-                                    "<td>" + customer.customer_address + "</td>";
+                                    "<td>" + review.review_id + "</td>" +
+                                    "<td>" + review.booking_id + "</td>" +
+                                    "<td>" + review.review_star + "</td>"+
+                                    "<td>" + review.review_comment + "</td>";
+
                             rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                         }
-                        $("#customer_table").append(rows);
+                        $("#review_table").append(rows);
                     }
                 } catch (error) {
                     showError("There is a problem retrieving books data, please try again later.<br>" + error);

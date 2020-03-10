@@ -1,3 +1,5 @@
+
+
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -7,8 +9,8 @@ CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_review'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
+
 
 class Review(db.Model):
     __tablename__ = "review"
@@ -41,5 +43,4 @@ def getAll():
         })
 
 if __name__ == "__main__":  # to run this application with out having the name app.py
-    app.debug = True
     app.run(host='127.0.0.1', port=1003, debug=True)
