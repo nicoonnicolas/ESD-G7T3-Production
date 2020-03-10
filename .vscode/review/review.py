@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask (__name__)      # making book.py as a Flask app
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_customer'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_review'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -36,15 +36,14 @@ class Review(db.Model):
 
 @app.route("/review")         # when will this page called? Default HTTP protocol is GET, even when not specified
 def getAll():
-    #return "Get all Books"  # pull the data from the DB
+    #return "Get all Reviews"  # pull the data from the DB
     return jsonify({
-        "customers": [customer.json() for customer in Review.query.all()]
-        }) #Book.query.all() is the same as " SELECT * FROM table_name "
+        "Reviews": [review.json() for review in Review.query.all()]
+        }) #Review.query.all() is the same as " SELECT * FROM table_name "
 
 @app.route("/review/<string:review_id>", methods=['GET'])
-def findCustomer(customer_mobile):
+def findReview(review_id):
     review = Review.query.filter_by(review_id=review_id).first() 
-    # .first() returns the FIRST RECORD : SELECT * FROM book WHERE isbn13 = <isbn13> LIMIT 1
     if review:
         return jsonify(review.json())
     return jsonify({"message": "Review not found"}), 404
@@ -52,7 +51,7 @@ def findCustomer(customer_mobile):
 
 @app.route("/review/<string:review_id>", methods=['POST'])
 def createReview(review_id):
-    if (Review.query.filter_by(customer_mobile=review_id).first()):
+    if (Review.query.filter_by(review_id=review_id).first()):
         return jsonify({
             "message": "A Review with review ID '{}' already exists.".format(review_id)
             }), 400

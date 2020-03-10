@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_cors import CORS
 
 app = Flask (__name__)      # making book.py as a Flask app
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_serviceprovider'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -13,13 +14,15 @@ class ServiceProvider(db.Model):
     __tablename__ = 'serviceprovider'
     
     provider_mobile = db.Column(db.String(8), primary_key=True)
+    provider_name = db.Column(db.String(128), nullable = False)
     provider_service1 = db.Column(db.String(256), nullable=True)
     provider_service2= db.Column(db.String(256), nullable=True)
     provider_service3 = db.Column(db.String(256), nullable=True)
     provider_price = db.Column(db.Float(precision=2), nullable=False)
 
-    def __init__(self, provider_mobile, provider_service1, provider_service2, provider_service3, provider_price  ):
+    def __init__(self, provider_mobile, provider_name, provider_service1, provider_service2, provider_service3, provider_price):
         self.provider_mobile = provider_mobile
+        self.provider_name = provider_name
         self.provider_service1 = provider_service1        
         self.provider_service2 = provider_service2
         self.provider_service3 = provider_service3
@@ -27,7 +30,8 @@ class ServiceProvider(db.Model):
 
     def json(self):
         return {
-        "provider_mobile": self.provider_mobile, 
+        "provider_mobile": self.provider_mobile,
+        "provider_name": self.provider_name,
         "provider_service1": self.provider_service1, 
         "provider_service2": self.provider_service2,
         "provider_service3": self.provider_service3,
