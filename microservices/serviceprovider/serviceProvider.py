@@ -2,11 +2,13 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
+
 app = Flask (__name__)      # making book.py as a Flask app
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_serviceprovider'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 db = SQLAlchemy(app)
 
@@ -55,6 +57,7 @@ def findServiceProvider(provider_mobile):
 
 
 @app.route("/serviceprovider/<string:provider_mobile>", methods=['POST'])
+
 def createServiceProvider(provider_mobile):
     if (ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first()):
         return jsonify({

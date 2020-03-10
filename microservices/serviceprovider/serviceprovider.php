@@ -76,7 +76,7 @@
                         $("#service_table").append(rows);
                     }
                 } catch (error) {
-                    showError("There is a problem retrieving books data, please try again later.<br>" + error);
+                    showError("There is a problem retrieving service provider data, please try again later.<br>" + error);
                 }
             });
         </script>

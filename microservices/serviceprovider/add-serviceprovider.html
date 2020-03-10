@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -32,7 +33,7 @@
 <body>
     <div id="main-container" class="container">
         <h1 class="display-4">Add Service Provider</h1>
-        <p><a class='btn btn-outline-info' href='index.html'>Browse Books</a> <a class='btn btn-outline-info' href='add-serviceprovider.html'>Add Service Provider</a></p>
+        <p><a class='btn btn-outline-info' href='#'>Browse Serice Providers</a> <a class='btn btn-outline-info' href='add-serviceprovider.html'>Add Service Provider</a></p>
         <form id='addServiceProviderForm' method = "post">
             Service Provider: <br><input type="text" id="serviceProv"> <br>
             Contact Number: <br><input type="text" id="contactNum"> <br>
@@ -83,7 +84,7 @@
                 var serviceProvided3 = $('#services3').val();
                 var price = $('#pricing').val();
 
-                var serviceURL = "http://localhost:5000/serviceprovider" + "/" + serviceProvider;
+                var serviceURL = "http://localhost:1001/serviceprovider" + "/" + contactNumber;
                 console.log(serviceURL)
 
                 try {
@@ -92,7 +93,7 @@
                             serviceURL, { 
                                 method: 'POST', 
                                 headers: { "Content-Type": "application/json" }, 
-                                body: JSON.stringify({ contactNumber: contactNumber, serviceProvided1: serviceProvided1,  
+                                body: JSON.stringify({ serviceProvider: serviceProvider, serviceProvided1: serviceProvided1,  
                                 serviceProvided2: serviceProvided2, serviceProvided3: serviceProvided3,price: price })  
                              });
 
