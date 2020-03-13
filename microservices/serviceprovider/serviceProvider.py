@@ -57,7 +57,6 @@ def findServiceProvider(provider_mobile):
 
 
 @app.route("/serviceprovider/<string:provider_mobile>", methods=['POST'])
-
 def createServiceProvider(provider_mobile):
     if (ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first()):
         return jsonify({
