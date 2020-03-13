@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 10, 2020 at 05:48 AM
+-- Generation Time: Mar 13, 2020 at 08:36 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -73,6 +73,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
 --
 
 INSERT INTO `customer` (`customer_mobile`, `customer_name`, `customer_address`) VALUES
+('81112222', 'Chantel', 'Admiralty'),
+('87777777', 'Hello', '81 Victoria St'),
 ('91222222', 'Agnes Lam', 'Singapore Management University, Singapore'),
 ('91239123', 'Nicolas Wijaya', 'Singapore Management University, Singapore');
 --
@@ -89,19 +91,19 @@ USE `g7t3_review`;
 
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
-  `review_id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
   `review_star` int(11) NOT NULL,
   `review_comment` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`review_id`)
+  PRIMARY KEY (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`review_id`, `booking_id`, `review_star`, `review_comment`) VALUES
-(10000001, 50000001, 4, 'First Comment. Not so bad.');
+INSERT INTO `review` (`booking_id`, `review_star`, `review_comment`) VALUES
+(50000001, 4, 'First Comment. Not so bad.'),
+(50000002, 5, 'Hehe Haha');
 --
 -- Database: `g7t3_serviceprovider`
 --
@@ -130,6 +132,9 @@ CREATE TABLE IF NOT EXISTS `serviceprovider` (
 --
 
 INSERT INTO `serviceprovider` (`provider_mobile`, `provider_name`, `provider_service1`, `provider_service2`, `provider_service3`, `provider_price`) VALUES
+('54444442', 'Testing Add', 'HP', 'Lenovo', 'Logitech', '800.10'),
+('65544444', 'Sun Dogs', 'Sun Tanning', 'Makan', 'Alcohol', '234.66'),
+('65553333', '12345678', 'Pur', 'Bark', '', '45.60'),
 ('90000000', 'Impawssible', 'Showering', 'Petting', '', '25.99'),
 ('98765432', 'What The Fluff', 'Showering ', 'Blowing', 'Feeding', '50.01');
 COMMIT;
