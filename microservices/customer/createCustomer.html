@@ -28,85 +28,74 @@
             crossorigin="anonymous">
         </script>
     </head>
+    <!--
     <style>
         body {Form
-            padding: 10px;
+              padding: 10px;
         }    
     </style>
-
-    <body><BR>
-        <h1 class="display-4"><center>Create Customer</center></h1>
-        <div id="main_container" class="container">
-            <!--
-        <form id='addCustomerForm' method="post">
-  <div class="form-group">
-    <label for="customer_name">Name</label>
-    <input type="customer_name" class="form-control" id="customer_name" aria-describedby="customer_name" placeholder="Enter your name">
-  </div>
-  <div class="form-group">
-    <label for="customer_mobile">Mobile</label>
-    <input type="customer_mobile" class="form-control" id="customer_mobile" aria-describedby="customer_mobile" placeholder="Enter phone number">
-  </div>
-  <div class="form-group">
-    <label for="customer_address">Address</label>
-    <input type="customer_address" class="form-control" id="customer_address" aria-describedby="customer_address" placeholder="Enter your address">
-  </div>
-
-  <button type="submit" class="btn btn-primary" id="addCustomerBtn">Submit</button>
-</form>
     -->
-    <div id="main-container" class="container">
-        <form id='addCustomerForm' method="POST">
-            Customer Full Name: <br><input type="text" id="customer_name"> <br>
-            Mobile Number: <br><input type="text" id="customer_mobile"> <br>
-            Address: <br><input type="text" id="customer_address"> <br>
-            <button id="addCustomerBtn" type="button" class='btformn btn-primary'>Add</button>
-        </form>
-    </div>
-    <script>
-        $('#customer_table').hide();
-        function showError(message) {
-            // Hide the table and button in the event of error
+    <body>
+        <h1 class="display-4" style="text-align: center">Add Customer</h1>
+        <div id="main-container" class="container">
+            <p>
+                <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
+                <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
+                <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
+                <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
+            </p>
+            <form id='addCustomerForm' method="POST">
+                Customer Full Name: <br><input type="text" id="customer_name"> <br>
+                Mobile Number: <br><input type="text" id="customer_mobile"> <br>
+                Address: <br><input type="text" id="customer_address"> <br>
+                <br>
+                <button id="addCustomerBtn" type="button" class='btn btn-primary'>Add</button>
+            </form>
+        </div>
+        <script>
             $('#customer_table').hide();
-            $('#addCustomerBtn').hide();
+            function showError(message) {
+                // Hide the table and button in the event of error
+                $('#customer_table').hide();
+                $('#addCustomerBtn').hide();
 
-            // Display an error under the main container
-            $('#main-container').append("<label class='errormsg'>" + message + "</label>");
-        }
+                // Display an error under the main container
+                $('#main-container').append("<label class='errormsg'>" + message + "</label>");
+            }
 
-        check = [];
+            check = [];
 
-        //$("#submit").click(function () {
-        $("#addCustomerBtn").click(function () {
-            $(async () => {
-                var customer_name = $('#customer_name').val();
-                var customer_mobile = $('#customer_mobile').val();
-                var customer_address = $('#customer_address').val();
+            //$("#submit").click(function () {
+            $("#addCustomerBtn").click(function () {
+                $(async () => {
+                    var customer_name = $('#customer_name').val();
+                    var customer_mobile = $('#customer_mobile').val();
+                    var customer_address = $('#customer_address').val();
 
-                var serviceURL = "http://localhost:1000/customer/" + customer_mobile;
-                console.log(serviceURL)
-                // console.log(customer_name)
-                // console.log(customer_mobile)
-                // console.log(customer_address)
+                    var serviceURL = "http://localhost:1000/customer/" + customer_mobile;
+                    console.log(serviceURL)
+                    // console.log(customer_name)
+                    // console.log(customer_mobile)
+                    // console.log(customer_address)
 
-                try {
-                    const response =
-                            await fetch(
-                                    serviceURL, {
-                                        method: 'POST',
-                                        headers: {"Content-Type": "application/json"},
-                                        body: JSON.stringify({customer_name: customer_name, customer_address: customer_address})
-                                    });
-                    console.log(response)
-                    const data = await response.json();
-                } catch (error) {
-                    $('.errormsg').remove();
-                    // Errors when calling the service; such as network error, 
-                    // service offline, etc
-                    showError('There is a problem retrieving customer data, please try again later.<br>' + error);
-                } // error
-            });
-        })
-    </script>
+                    try {
+                        const response =
+                                await fetch(
+                                        serviceURL, {
+                                            method: 'POST',
+                                            headers: {"Content-Type": "application/json"},
+                                            body: JSON.stringify({customer_name: customer_name, customer_address: customer_address})
+                                        });
+                        console.log(response)
+                        const data = await response.json();
+                    } catch (error) {
+                        $('.errormsg').remove();
+                        // Errors when calling the service; such as network error, 
+                        // service offline, etc
+                        showError('There is a problem retrieving customer data, please try again later.<br>' + error);
+                    } // error
+                });
+            })
+        </script>
     </body>
 </html>

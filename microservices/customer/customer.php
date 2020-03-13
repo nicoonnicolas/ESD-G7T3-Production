@@ -41,8 +41,7 @@
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
                 <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
-                <a class='btn btn-outline-info' href='../review/review.php'>Review</a>
-
+                <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
             <table id="customer_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
@@ -53,6 +52,7 @@
                     </tr>
                 <thead class='thead-dark'>
             </table>
+            <a id="addReviewBtn" class="btn btn-primary" href="createCustomer.html">Add Customer</a>
         </div>
         <script>
             function showError(message) {
