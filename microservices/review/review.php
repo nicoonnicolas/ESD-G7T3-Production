@@ -40,14 +40,13 @@
             <table id="review_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
-                        <th>Review ID</th>
                         <th>Booking ID</th>
                         <th>Stars</th>
                         <th>Comment</th>
                     </tr>
                 <thead class='thead-dark'>
             </table>
-            <a id="addReviewBtn" class="btn btn-primary" href="addReview.php">Add a review</a>
+            <a id="addReviewBtn" class="btn btn-primary" href="addReview.html">Add a review</a>
         </div>
         <script>
             
@@ -68,11 +67,9 @@
                         var rows = "";
                         for (const review of reviews) {
                             var eachRow =
-                                    "<td>" + review.review_id + "</td>" +
                                     "<td>" + review.booking_id + "</td>" +
                                     "<td>" + review.review_star + "</td>"+
                                     "<td>" + review.review_comment + "</td>";
-
                             rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                         }
                         $("#review_table").append(rows);
