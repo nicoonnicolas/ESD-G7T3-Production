@@ -63,6 +63,25 @@ def createCustomer(customer_mobile):
         return jsonify({"message": "An error occurred creating the customer."}), 500
 
     return jsonify(customer.json()), 201
+
+@app.route("/customer/<string:customer_mobile>", methods=['POST'])
+def updateCustomer(customer_mobile):
+    if (not(Customer.query.filter_by(customer_mobile=customer_mobile).first())):
+        return jsonify({
+            "message": "A customer with Customer ID '{}' doest not exists.".format(customer_mobile)
+            }), 400
+
+    data = request.get_json()
+    print(data)
+    customer = Customer(customer_mobile, **data)
+
+    try:
+        db.session.add(customer)
+        db.session.commit()
+    except:
+        return jsonify({"message": "An error occurred creating the customer."}), 500
+
+    return jsonify(customer.json()), 201
     
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.debug = True
