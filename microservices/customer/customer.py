@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask (__name__)      # making book.py as a Flask app
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_customer'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_customer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 db = SQLAlchemy(app)
@@ -64,11 +64,11 @@ def createCustomer(customer_mobile):
 
     return jsonify(customer.json()), 201
 
-@app.route("/customer/<string:customer_mobile>", methods=['POST'])
+@app.route("/customer/update/<string:customer_mobile>", methods=['POST'])
 def updateCustomer(customer_mobile):
     if (not(Customer.query.filter_by(customer_mobile=customer_mobile).first())):
         return jsonify({
-            "message": "A customer with Customer ID '{}' doest not exists.".format(customer_mobile)
+            "message": "A customer with Customer ID '{}' does not exists.".format(customer_mobile)
             }), 400
 
     data = request.get_json()
@@ -76,10 +76,13 @@ def updateCustomer(customer_mobile):
     customer = Customer(customer_mobile, **data)
 
     try:
-        db.session.add(customer)
+
+        customer = Customer.query.filter_by(customer_mobile=customer_mobile).first()
+        customer.customer_name = data['customer_name']
+        customer.customer_address = data['customer_address']
         db.session.commit()
     except:
-        return jsonify({"message": "An error occurred creating the customer."}), 500
+        return jsonify({"message": "An error occurred updating the customer."}), 500
 
     return jsonify(customer.json()), 201
     
