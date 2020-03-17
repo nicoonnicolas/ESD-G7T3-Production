@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Homepage</title>
+
+    <link rel="stylesheet" href="">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Bootstrap libraries -->
+    <meta name="viewport" 
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+    crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+    
+    <script 
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="Paws-logo.png" width="140" height="60" alt="Paws">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Booking
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../microservices/booking/createBooking.html">Create booking</a>
+                  <a class="dropdown-item" href="../microservices/booking/updateBooking.html">Update booking</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Service Providers
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../microservices/serviceprovider/createServiceProvider.html">Create Service Provider</a>
+                  <a class="dropdown-item" href="../microservices/serviceprovider/updateServiceProvider.html">Update Service Provider</a>
+                </div>
+              </li>
+            <a class="nav-item nav-link" href="../microservices/review/createReview.html">Reviews</a>
+            
+          </div>
+        </div>
+      </nav>
+
+      <br/>
+
+      <div class="jumbotron jumbotron-fluid">
+        <h2 style = "padding-left: 4%; padding-bottom: 3%;">My Actions</h2>
+        <div class="row">
+            <div class="col-sm-6" style = "padding-left: 4%;">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">View Customers</h5>
+                <p class="card-text">Click here to view customer information</p>
+                <a href="#" class="btn btn-primary">View Customers</a>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6" style = "padding-right:4%">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">View Service Providers</h5>
+                <p class="card-text">Click here to view service provider information</p>
+                <a href="#" class="btn btn-primary">View Service Providers</a>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+        <div class="row" style = "padding-top: 2%;">
+            <div class="col-sm-6" style = "padding-left: 4%;">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">View Reviews</h5>
+                <p class="card-text">Click here to view reviews</p>
+                <a href="#" class="btn btn-primary">View Reviews</a>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6" style = "padding-right:4%">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">View Bookings</h5>
+                <p class="card-text">Click here to view booking information</p>
+                <a href="#" class="btn btn-primary">View Bookings</a>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- <div id="main-container" class="container">
+        <h1 class="display-4">Book Listing</h1>
+        <table id="booksTable" class='table table-striped' border='1'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th>Title</th>
+                    <th>ISBN 13</th>
+                    <th>Price</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+        </table>
+        <a id="addBookBtn" class="btn btn-primary" href="add-book.html">Add a book</a>
+    </div>
+    <script>
+        // Helper function to display error message
+        function showError(message) {
+            // Hide the table and button in the event of error
+            $('#booksTable').hide();
+            $('#addBookBtn').hide();
+    
+            // Display an error under the main container
+            $('#main-container')
+                .append("<label>"+message+"</label>");
+        }
+    
+        // anonymous async function - using await requires the function that calls it to be async
+        $(async() => {           
+            // Change serviceURL to your own
+            var serviceURL = "http://127.0.0.1:5000/book";
+    
+            try {
+                const response =
+                await fetch(
+                    serviceURL, { method: 'GET' }
+                );
+                const data = await response.json();
+                var books = data.books; //the arr is in data.books of the JSON data
+                // array or array.length are falsy
+                if (!books || !books.length) {
+                    showError('Books list empty or undefined.')
+                } else {
+                    // for loop to setup all table rows with obtained book data
+                    var rows = "";
+                    for (const book of books) {
+                        eachRow =
+                            "<td>" + book.title + "</td>" +
+                            "<td>" + book.isbn13 + "</td>" +
+                            "<td>" + book.price + "</td>" +
+                            "<td>" + book.availability + "</td>";
+                        rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                    }
+                    // add all the rows to the table
+                    $('#booksTable').append(rows);
+                }
+            } catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                showError
+                  ('There is a problem retrieving books data, please try again later.<br />'+error);
+               
+            } // error
+        });
+    </script> -->
+</body>
+</html>
