@@ -147,9 +147,9 @@ def getAll():
         "bookings": [booking.json() for booking in Booking.query.all()]
         }) #Book.query.all() is the same as " SELECT * FROM table_name "
 
-@app.route("/booking/<string:booking_id>", methods=['GET'])
-def findBooking(booking_id):
-    booking = Booking.query.filter_by(booking_id=booking_id).first() 
+@app.route("/booking/<string:customer_mobile>", methods=['GET'])
+def findBooking(customer_mobile):
+    booking = Booking.query.filter_by(customer_mobile=customer_mobile).first() 
     # .first() returns the FIRST RECORD : SELECT * FROM book WHERE isbn13 = <isbn13> LIMIT 1
     if booking:
         return jsonify(booking.json())
