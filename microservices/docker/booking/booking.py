@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from os import environ
+
 
 app = Flask (__name__)      # making book.py as a Flask app
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_booking'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 db = SQLAlchemy(app)
@@ -45,9 +47,9 @@ def getAll():
         "bookings": [booking.json() for booking in Booking.query.all()]
         }) #Book.query.all() is the same as " SELECT * FROM table_name "
 
-@app.route("/booking/<string:customer_mobile>", methods=['GET'])
-def findBooking(customer_mobile):
-    booking = Booking.query.filter_by(customer_mobile=customer_mobile).first() 
+@app.route("/booking/<string:booking_id>", methods=['GET'])
+def findBookingID(booking_id):
+    booking = Booking.query.filter_by(booking_id=booking_id).first() 
     # .first() returns the FIRST RECORD : SELECT * FROM book WHERE isbn13 = <isbn13> LIMIT 1
     if booking:
         return jsonify(booking.json())
