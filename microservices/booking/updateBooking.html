@@ -48,6 +48,9 @@
                 Booking ID: <br><input type="text" id="booking_id"> <br>
                 Booking Date: <br><input type="text" id="booking_date"> <br>
                 Booking Time: <br><input type="text" id="booking_time"> <br>
+                Booking Price: <br><input type="text" id="booking_price"> <br>
+                Customer Mobile: <br><input type="text" id="customer_mobile"> <br>
+                Provider Mobile: <br><input type="text" id="provider_mobile"> <br>
                 <br>
                 <button id="updateBookingBtn" type="button" class='btn btn-primary'>Update</button>
             </form>
@@ -71,6 +74,10 @@
                     var booking_id = $('#booking_id').val();
                     var booking_date = $('#booking_date').val();
                     var booking_time = $('#booking_time').val();
+                    var booking_price = $('#booking_price').val();
+                    var provider_mobile = $('#provider_mobile').val();
+                    var customer_mobile = $('#customer_mobile').val();
+
 
                     var serviceURL = "http://localhost:1002/booking/update/" + booking_id;
                     console.log(serviceURL)
@@ -83,7 +90,8 @@
                                         serviceURL, {
                                             method: 'POST',
                                             headers: {"Content-Type": "application/json"},
-                                            body: JSON.stringify({booking_date: booking_date, booking_time: booking_time})
+                                            body: JSON.stringify({booking_price: booking_price, customer_mobile: customer_mobile, 
+                                            provider_mobile: provider_mobile, booking_date: booking_date, booking_time: booking_time})
                                         });
                         console.log(response)
                         const data = await response.json();
