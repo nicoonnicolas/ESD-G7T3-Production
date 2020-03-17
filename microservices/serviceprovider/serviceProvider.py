@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask (__name__)      # making book.py as a Flask app
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_serviceprovider'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_serviceprovider'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -72,6 +72,30 @@ def createServiceProvider(provider_mobile):
         db.session.commit()
     except:
         return jsonify({"message": "An error occurred creating the service provider."}), 500
+
+    return jsonify(serviceprovider.json()), 201
+
+@app.route("/serviceprovider/update/<string:provider_mobile>", methods=['POST'])
+def updateServiceProvider(provider_mobile):
+    if (not(ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first())):
+        return jsonify({
+            "message": "A service provider with Provider ID '{}' does not exists.".format(provider_mobile)
+            }), 400
+
+    data = request.get_json()
+    print(data)
+    serviceprovider = ServiceProvider(provider_mobile, **data)
+
+    try:
+        serviceprovider = ServiceProvider.query.filter_by(provider_mobile=provider_mobile).first()
+        serviceprovider.provider_name = data['provider_name']
+        serviceprovider.provider_service1 = data['provider_service1']
+        serviceprovider.provider_service2 = data['provider_service2']
+        serviceprovider.provider_service3 = data['provider_service3']
+        serviceprovider.provider_price = data['provider_price']
+        db.session.commit()
+    except:
+        return jsonify({"message": "An error occurred updating the service provider."}), 500
 
     return jsonify(serviceprovider.json()), 201
     
