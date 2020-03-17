@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Update Booking</title>
+        <title>Create Booking</title>
         <meta charset="UTF-8">
         <!-- Bootstrap libraries -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,7 +36,7 @@
     </style>
     -->
     <body>
-        <h1 class="display-4" style="text-align: center">Update Booking</h1>
+        <h1 class="display-4" style="text-align: center">Create Booking</h1>
         <div id="main-container" class="container">
             <p>
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
@@ -44,7 +44,7 @@
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
                 <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
-            <form id='updatebookingForm' method="POST">
+            <form id='createbookingForm' method="POST">
                 Booking ID: <br><input type="text" id="booking_id"> <br>
                 Booking Date: <br><input type="text" id="booking_date"> <br>
                 Booking Time: <br><input type="text" id="booking_time"> <br>
@@ -52,7 +52,7 @@
                 Customer Mobile: <br><input type="text" id="customer_mobile"> <br>
                 Provider Mobile: <br><input type="text" id="provider_mobile"> <br>
                 <br>
-                <button id="updateBookingBtn" type="button" class='btn btn-primary'>Update</button>
+                <button id="createBookingBtn" type="button" class='btn btn-primary'>Create</button>
             </form>
         </div>
         <script>
@@ -60,7 +60,7 @@
             function showError(message) {
                 // Hide the table and button in the event of error
                 $('#booking_table').hide();
-                $('#updateBookingBtn').hide();
+                $('#createBookingBtn').hide();
 
                 // Display an error under the main container
                 $('#main-container').append("<label class='errormsg'>" + message + "</label>");
@@ -69,7 +69,7 @@
             check = [];
 
             //$("#submit").click(function () {
-            $("#updateBookingBtn").click(function () {
+            $("#createBookingBtn").click(function () {
                 $(async () => {
                     var booking_id = $('#booking_id').val();
                     var booking_date = $('#booking_date').val();
@@ -79,7 +79,7 @@
                     var customer_mobile = $('#customer_mobile').val();
 
 
-                    var serviceURL = "http://localhost:1002/booking/update/" + booking_id;
+                    var serviceURL = "http://localhost:1002/booking/" + booking_id;
                     console.log(serviceURL)
                     console.log(booking_date)
                     console.log(booking_time)
