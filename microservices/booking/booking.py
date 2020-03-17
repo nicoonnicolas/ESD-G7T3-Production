@@ -46,7 +46,7 @@ def getAll():
         }) #Book.query.all() is the same as " SELECT * FROM table_name "
 
 @app.route("/booking/<string:booking_id>", methods=['GET'])
-def findBooking(booking_id):
+def findBookingID(booking_id):
     booking = Booking.query.filter_by(booking_id=booking_id).first() 
     # .first() returns the FIRST RECORD : SELECT * FROM book WHERE isbn13 = <isbn13> LIMIT 1
     if booking:
@@ -74,7 +74,7 @@ def createBooking(booking_id):
     return jsonify(booking.json()), 201
 
 @app.route("/booking/update/<string:booking_id>", methods=['POST'])
-def updateBooking(booking_id):
+def updateCustomer(booking_id):
     if (not(Booking.query.filter_by(booking_id=booking_id).first())):
         return jsonify({
             "message": "A booking with Booking ID '{}' does not exists.".format(booking_id)
@@ -88,10 +88,11 @@ def updateBooking(booking_id):
 
         booking = Booking.query.filter_by(booking_id=booking_id).first()
         booking.booking_date = data['booking_date']
-        booking.booking_price = data['booking_price']
         booking.booking_time = data['booking_time']
-        booking.customer_mobile = data['customer_mobile']
-        booking.provider_mobile = data['provider_mobile']
+        # booking.customer_mobile = data['customer_mobile']
+        # booking.provider_mobile = data['provider_mobile']
+        # booking.booking_price = data['booking_price']
+        # booking.booking_id = data['booking_id']
         db.session.commit()
     except:
         return jsonify({"message": "An error occurred updating the booking."}), 500
