@@ -92,7 +92,6 @@ def updateCustomer(booking_id):
         booking.customer_mobile = data['customer_mobile']
         booking.provider_mobile = data['provider_mobile']
         booking.booking_price = data['booking_price']
-        booking.booking_id = data['booking_id']
         db.session.commit()
     except:
         return jsonify({"message": "An error occurred updating the booking."}), 500
