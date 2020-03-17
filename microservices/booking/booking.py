@@ -89,10 +89,10 @@ def updateCustomer(booking_id):
         booking = Booking.query.filter_by(booking_id=booking_id).first()
         booking.booking_date = data['booking_date']
         booking.booking_time = data['booking_time']
-        # booking.customer_mobile = data['customer_mobile']
-        # booking.provider_mobile = data['provider_mobile']
-        # booking.booking_price = data['booking_price']
-        # booking.booking_id = data['booking_id']
+        booking.customer_mobile = data['customer_mobile']
+        booking.provider_mobile = data['provider_mobile']
+        booking.booking_price = data['booking_price']
+        booking.booking_id = data['booking_id']
         db.session.commit()
     except:
         return jsonify({"message": "An error occurred updating the booking."}), 500
