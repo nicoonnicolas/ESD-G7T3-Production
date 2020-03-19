@@ -1,3 +1,8 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,12 +65,26 @@
             }
 
             $(async () => {
-                var serviceURL = "http://127.0.0.1:1002/booking";
-
+<?php
+if (isset($_SESSION['mobile_number'])) {
+    $customerMobile = $_SESSION['mobile_number'];
+    ?>
+                    var customerMobile = <?php echo $customerMobile ?>;
+                    var serviceURL = "http://127.0.0.1:1002/booking/";
+                    serviceURL = serviceURL + customerMobile;
+<?php } else {
+    ?>
+                    var serviceURL = "http://127.0.0.1:1002/booking";
+<?php }
+?>
+                console.log(serviceURL);
+                alert(serviceURL);
                 try {
-                    const response = await fetch(serviceURL, {method: "GET"});
+                    const response = await fetch(serviceURL, {method: "GET"});    
                     const data = await response.json();
+                    console.log(data);
                     var bookings = data.bookings;
+                    console.log(bookings);
 
                     if (!bookings || !bookings.length) {
                         showError("No bookings found!");
