@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask (__name__)      # making book.py as a Flask app
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_customer'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_customer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 db = SQLAlchemy(app)

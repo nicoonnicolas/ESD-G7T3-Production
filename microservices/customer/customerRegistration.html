@@ -52,8 +52,8 @@
                       Booking
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="../microservices/booking/createBooking.html">Create booking</a>
-                      <a class="dropdown-item" href="../microservices/booking/updateBooking.html">Update booking</a>
+                      <a class="dropdown-item" href="../booking/createBooking.html">Create booking</a>
+                      <a class="dropdown-item" href="../booking/updateBooking.html">Update booking</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -74,7 +74,8 @@
           <br/>
 
         <h1 class="display-4 text-center">Customer Registration</h1>
-        <div id="main-container" class="container text-center">
+        <br/>
+        <div id="main-container" class="container" style = "width: 80%;">
             <form id='addCustomerForm' method="POST">
                 <div class="row">
                     <div class="col">
@@ -84,20 +85,37 @@
                       Mobile Number: <input type="text" class="form-control" id = "customer_mobile">
                     </div>
                   </div>
+                  <br/>
                 <!-- Customer Full Name: <br><input type="text" id="customer_name"> <br>
                 Mobile Number: <br><input type="text" id="customer_mobile"> <br> -->
-                Address: <br><input type="text" id="customer_address"> <br>
+                <div class = "row">
+                  <div class = "col">
+                    Address: <br><input type="text" id="customer_address" class = "form-control"> <br>
+                  </div>
+                  <div class = "col"></div>
+                </div>
                 <br>
                 <button id="addCustomerBtn" type="button" class='btn btn-primary'>Register</button>
             </form>
+
+            <br/>
+                <div class = "row">
+                    <div class = "col-lg-6 text-center" style = "margin: 0 auto;">
+                        <a href = "customerLogin.html" style = "font-size: 12px;">Already an existing user? Click here to Sign In</a>
+                    </div>
+                </div>
         </div>
 
         <br/>
         <br/>
         <br/>
         <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
-        <footer class="page-footer font-small" style = "background-color: #007bff">
+        <footer class="page-footer font-small" style = "background-color: #007bff;">
 
           <!-- Copyright -->
           <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
@@ -143,6 +161,7 @@
                                         });
                         console.log(response)
                         const data = await response.json();
+                        alert("Sucessfully Registered for account")
                     } catch (error) {
                         $('.errormsg').remove();
                         // Errors when calling the service; such as network error, 
