@@ -28,13 +28,8 @@
             crossorigin="anonymous">
         </script>
     </head>
-    <!--
-    <style>
-        body {Form
-              padding: 10px;
-        }    
-    </style>
-    -->
+
+
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -73,88 +68,67 @@
     
           <br/>
 
-        <h1 class="display-4" style = "padding-left: 10%;">Create Customer</h1>
-        <div id="main-container" class="container">
+        <h1 class="display-4" style = "padding-left: 10%;">Customers</h1>
+        <div id="main_container" class="container">
             <p>
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
                 <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
                 <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
-            <form id='addCustomerForm' method="POST">
-                Customer Full Name: <br><input type="text" id="customer_name"> <br>
-                Mobile Number: <br><input type="text" id="customer_mobile"> <br>
-                Address: <br><input type="text" id="customer_address"> <br>
-                <br>
-                <button id="addCustomerBtn" type="button" class='btn btn-primary'>Add</button>
-            </form>
+            <table id="customer_table" class='table table-striped' border='1'>
+                <thead class='thead-dark'>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Mobile Number</th>
+                        <th>Address</th>
+                    </tr>
+                <thead class='thead-dark'>
+            </table>
+            <a id="addReviewBtn" class="btn btn-primary" href="createCustomer.html">Add Customer</a>
         </div>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <br/>
 
         <footer class="page-footer font-small" style = "background-color: #007bff">
 
-          <!-- Copyright -->
-          <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
-          ESD G7T3
-          </div>
-          <!-- Copyright -->
-      
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
+            ESD G7T3
+            </div>
+            <!-- Copyright -->
+        
         </footer>
 
         <script>
-            $('#customer_table').hide();
             function showError(message) {
-                // Hide the table and button in the event of error
-                $('#customer_table').hide();
-                $('#addCustomerBtn').hide();
-
-                // Display an error under the main container
-                $('#main-container').append("<label class='errormsg'>" + message + "</label>");
+                $("#customer_table").hide();
+                $("#main_container").append("<label>" + message + "</label>");
             }
+            $(async() => {
+                var serviceURL = "http://127.0.0.1:1000/customer";
+                try {
+                    const response = await fetch(serviceURL, {method: "GET"});
+                    const data = await response.json();
+                    var customers = data.customers;
 
-            check = [];
-
-            //$("#submit").click(function () {
-            $("#addCustomerBtn").click(function () {
-                $(async () => {
-                    var customer_name = $('#customer_name').val();
-                    var customer_mobile = $('#customer_mobile').val();
-                    var customer_address = $('#customer_address').val();
-
-                    var serviceURL = "http://localhost:1000/customer/" + customer_mobile;
-                    console.log(serviceURL)
-                    // console.log(customer_name)
-                    // console.log(customer_mobile)
-                    // console.log(customer_address)
-
-                    try {
-                        const response =
-                                await fetch(
-                                        serviceURL, {
-                                            method: 'POST',
-                                            headers: {"Content-Type": "application/json"},
-                                            body: JSON.stringify({customer_name: customer_name, customer_address: customer_address})
-                                        });
-                        console.log(response)
-                        const data = await response.json();
-                    } catch (error) {
-                        $('.errormsg').remove();
-                        // Errors when calling the service; such as network error, 
-                        // service offline, etc
-                        showError('There is a problem retrieving customer data, please try again later.<br>' + error);
-                    } // error
-                });
-            })
+                    if (!customers || !customers.length) {
+                        showError("No Customers Found!");
+                    } else {
+                        var rows = "";
+                        for (const customer of customers) {
+                            var eachRow =
+                                    "<td>" + customer.customer_name + "</td>" +
+                                    "<td>" + customer.customer_mobile + "</td>" +
+                                    "<td>" + customer.customer_address + "</td>";
+                            rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                        }
+                        $("#customer_table").append(rows);
+                    }
+                } catch (error) {
+                    showError("There is a problem retrieving books data, please try again later.<br>" + error);
+                }
+            });
         </script>
     </body>
 </html>

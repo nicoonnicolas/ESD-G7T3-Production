@@ -4,7 +4,7 @@ $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
 $DB = "g7t3_customer";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB);
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 
 if (!$link) {
     die(mysqli_error($link));
@@ -23,7 +23,7 @@ if (!isset($_SESSION['mobile_number'])) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['mobile_number'] = $row['customer_mobile'];
             $message = "You are logged in!";
-            header("Location: ../booking/booking.php"); /* Redirect browser */
+            header("Location: ../../app/index.html"); /* Redirect browser */
             exit();
             
         } else {
