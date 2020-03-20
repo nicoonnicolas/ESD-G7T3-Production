@@ -58,6 +58,7 @@
                 var serviceURL = "http://127.0.0.1:1001/serviceprovider";
                 try {
                     const response = await fetch(serviceURL, {method: "GET"});
+                    console.log(response)
                     const data = await response.json();
                     var serviceProviders = data.seviceproviders;
 
