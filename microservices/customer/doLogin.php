@@ -23,10 +23,8 @@ if (!isset($_SESSION['mobile_number'])) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['mobile_number'] = $row['customer_mobile'];
             $message = "You are logged in!";
-            //header("Location: ../../app/index.html"); /* Redirect browser */
-            header("Location: ../booking/booking.php"); /* Redirect browser */
+            header("Location: ../../app/index.html"); /* Redirect browser */
             exit();
-            
         } else {
             $authenticated = false;
             //echo $query;
@@ -36,6 +34,8 @@ if (!isset($_SESSION['mobile_number'])) {
     }
 } else {
     $message .= "You are already logged in!";
+    header("Location: ../../app/index.html"); /* Redirect browser */
+    exit();
 }
 
 echo $message;
