@@ -53,7 +53,7 @@ session_start();
                     </tr>
                 <thead class='thead-dark'>
             </table>
-            <a id="addReviewBtn" class="btn btn-primary" href="createBooking.html">Create Booking</a>
+            <a id="addReviewBtn" class="btn btn-primary" href="createBooking.php">Create Booking</a>
             <a id="addReviewBtn" class="btn btn-primary" href="updateBooking.html">Update Booking</a>
 
         </div>
@@ -78,7 +78,6 @@ if (isset($_SESSION['mobile_number'])) {
 <?php }
 ?>
                 console.log(serviceURL);
-                alert(serviceURL);
                 try {
                     const response = await fetch(serviceURL, {method: "GET"});    
                     const data = await response.json();
