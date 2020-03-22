@@ -42,37 +42,35 @@
                 <img src="../../app/Paws-logo.png" width="140" height="60" alt="Paws">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../../app/index.html">Home <span class="sr-only">(current)</span></a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Booking
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="../booking/createBooking.html">Create booking</a>
-                      <a class="dropdown-item" href="../booking/updateBooking.html">Update booking</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Service Providers
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="../microservices/serviceprovider/createServiceProvider.html">Create Service Provider</a>
-                      <a class="dropdown-item" href="../microservices/serviceprovider/updateServiceProvider.html">Update Service Provider</a>
-                    </div>
-                  </li>
-                <a class="nav-item nav-link" href="../microservices/review/createReview.html">Reviews</a>
-                
-              </div>
-            </div>
-          </nav>
-    
-          <br/>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="../../app/index.html">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Booking
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../booking/createBooking.html">Create booking</a>
+                            <a class="dropdown-item" href="../booking/updateBooking.html">Update booking</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Service Providers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../microservices/serviceprovider/createServiceProvider.html">Create Service Provider</a>
+                            <a class="dropdown-item" href="../microservices/serviceprovider/updateServiceProvider.html">Update Service Provider</a>
+                        </div>
+                    </li>
+                    <a class="nav-item nav-link" href="../microservices/review/createReview.html">Reviews</a>
 
+                </div>
+            </div>
+        </nav>
+        <br>
         <h1 class="display-4 text-center">Customer Registration</h1>
         <br/>
         <div id="main-container" class="container" style = "width: 80%;">
@@ -88,24 +86,22 @@
             </table>
             <a id="addReviewBtn" class="btn btn-primary" href="add-serviceprovider.html">Add Provider</a>
         </div>
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <footer class="page-footer font-small" style = "background-color: #007bff;">
 
-          <!-- Copyright -->
-          <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
-          ESD G7T3
-          </div>
-          <!-- Copyright -->
-      
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
+                ESD G7T3
+            </div>
+            <!-- Copyright -->
+
         </footer>
 
         <script>
