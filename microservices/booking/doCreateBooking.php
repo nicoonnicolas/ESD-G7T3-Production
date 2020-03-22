@@ -3,6 +3,9 @@
 $customerMobile = $_POST['customer_mobile'];
 $providerMobile = $_POST['provider_mobile'];
 $providerService = $_POST['provider_service'];
+$providerDay = $_POST['provider_day'];
+$providerTime = $_POST['provider_time'];
+
 
 echo $customerMobile; echo $providerMobile; echo $providerService;
 
