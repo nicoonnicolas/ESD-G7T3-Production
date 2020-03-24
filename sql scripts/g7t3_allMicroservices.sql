@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 13, 2020 at 08:36 AM
+-- Generation Time: Mar 24, 2020 at 11:03 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
 
 INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `booking_time`, `booking_date`, `booking_price`) VALUES
 (50000001, '91239123', '90000000', '14:37', '2020-03-06', 50.99),
-(50000002, '98765432', '90000000', '19:37', '2020-03-06', 65.70);
+(50000002, '81112222', '90000000', '19:37', '2020-03-06', 65.70);
 --
 -- Database: `g7t3_customer`
 --
@@ -137,6 +137,45 @@ INSERT INTO `serviceprovider` (`provider_mobile`, `provider_name`, `provider_ser
 ('65553333', '12345678', 'Pur', 'Bark', '', '45.60'),
 ('90000000', 'Impawssible', 'Showering', 'Petting', '', '25.99'),
 ('98765432', 'What The Fluff', 'Showering ', 'Blowing', 'Feeding', '50.01');
+--
+-- Database: `g7t3_serviceprovidertrial`
+--
+CREATE DATABASE IF NOT EXISTS `g7t3_serviceprovidertrial` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `g7t3_serviceprovidertrial`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `serviceprovider_trial`
+--
+
+DROP TABLE IF EXISTS `serviceprovider_trial`;
+CREATE TABLE IF NOT EXISTS `serviceprovider_trial` (
+  `provider_mobile` varchar(8) NOT NULL COMMENT 'Serial number for the service provider.',
+  `provider_name` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
+  `provider_price` decimal(10,2) NOT NULL,
+  `provider_time` varchar(5) NOT NULL,
+  `provider_day` varchar(3) NOT NULL,
+  `provider_service` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
+  PRIMARY KEY (`provider_mobile`,`provider_service`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `serviceprovider_trial`
+--
+
+INSERT INTO `serviceprovider_trial` (`provider_mobile`, `provider_name`, `provider_price`, `provider_time`, `provider_day`, `provider_service`) VALUES
+('1', 'Agnes Lam', '45.00', '18:00', 'fri', 'Feeding'),
+('2', 'Nicolas Wijaya', '35.67', '19:00', 'fri', 'Strumming'),
+('2', 'Nicolas Wijaya', '16.20', '16:20', 'tue', '2'),
+('2', 'Nicolas Wijaya', '16.21', '16:21', 'tue', 'Fingerstyle'),
+('2', 'Nicolas Wijaya', '17.41', '17:41', 'wed', 'Guitar'),
+('2', 'Nicolas Wijaya', '17.44', '17:44', 'thu', 'Piano'),
+('3', 'Chantel', '99.99', '18:38', 'tue', 'Boy Breaker'),
+('2', 'Nicolas Wijaya', '18.06', '18:06', 'tue', 'Er Hu'),
+('3', 'Chantel', '18.41', '18:41', 'tue', 'Disappoint Boys'),
+('4', 'Ming Miao', '18.42', '18:42', 'mon', 'Stress'),
+('5', 'Pei Yi', '18.47', '18:47', 'sun', 'Girlfriend Service');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
