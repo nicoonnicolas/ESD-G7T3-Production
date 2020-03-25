@@ -13,7 +13,7 @@
                     Booking
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="../booking/booking.php">View Bookings</a>
+                    <a class="dropdown-item" href="../serviceprovider/serviceProviderBooking_Trial.php">View Bookings</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
