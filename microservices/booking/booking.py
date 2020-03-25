@@ -21,15 +21,17 @@ class Booking(db.Model):
     booking_time = db.Column(db.String(5), nullable=False)
     booking_date = db.Column(db.String(10), nullable=False)
     booking_price = db.Column(db.Float(precision=2), nullable=False)
+    booking_status = db.Column(db.Integer, nullable=False)
 
     def __init__(self, booking_id, customer_mobile, provider_mobile,
-                 booking_time, booking_date, booking_price):
+                 booking_time, booking_date, booking_price, booking_status):
         self.booking_id = booking_id
         self.customer_mobile = customer_mobile
         self.provider_mobile = provider_mobile
         self.booking_time = booking_time
         self.booking_date = booking_date
         self.booking_price = booking_price
+        self.booking_status = booking_status
 
     def json(self):
         return {
@@ -38,13 +40,12 @@ class Booking(db.Model):
             "provider_mobile": self.provider_mobile,
             "booking_time": self.booking_time,
             "booking_date": self.booking_date,
-            "booking_price": self.booking_price
+            "booking_price": self.booking_price,
+            "booking_status": self.booking_status
         }
 
 
-@app.route(
-    "/booking"
-)  # when will this page called? Default HTTP protocol is GET, even when not specified
+@app.route("/booking")  # when will this page called? Default HTTP protocol is GET, even when not specified
 def getAll():
     #return "Get all Books"  # pull the data from the DB
     return jsonify({
@@ -62,6 +63,16 @@ def findBooking(customer_mobile):
     })
     return allBookings
 
+@app.route("/booking/provider/<string:provider_mobile>", methods=['GET'])
+def findBookingByProvider(provider_mobile):
+    allBookings = jsonify({
+        "bookings": [
+            booking.json() for booking in Booking.query.filter_by(
+                provider_mobile=provider_mobile
+            )
+        ]
+    })
+    return allBookings
 
 @app.route("/booking/<string:booking_id>", methods=['POST'])
 def createBooking(booking_id):
@@ -95,7 +106,6 @@ def updateCustomer(booking_id):
         }), 400
 
     data = request.get_json()
-    print(data)
     booking = Booking(booking_id, **data)
 
     try:
@@ -113,6 +123,21 @@ def updateCustomer(booking_id):
 
     return jsonify(booking.json()), 201
 
+@app.route("/booking/status/<string:booking_id>", methods=['POST'])
+def updateBookingStatus(booking_id):
+    if (not (Booking.query.filter_by(booking_id=booking_id).first())):
+        return jsonify({
+            "message":
+            "A booking with Booking ID '{}' does not exists.".format(
+                booking_id)
+        }), 400
+    try:
+        booking = Booking.query.filter_by(booking_id = booking_id).first()
+        booking.booking_status = 1
+        db.session.commit()
+    except:
+        return jsonify({"message":"An error occurred updating the booking status"}), 500
+    return jsonify(booking.json()), 201
 
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.debug = True
