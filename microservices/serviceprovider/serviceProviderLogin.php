@@ -56,12 +56,17 @@ session_start();
                     </div>
                 </div>
                 <br>
-                <input id="provider_login_btn" type="submit" class='btn btn-primary' value="Login"/>
+                <div class="row">
+                    <div class = "col-lg-6 text-center" style = "margin: auto;">
+                        <input id="provider_login_btn" type="submit" class='btn btn-primary' value="Login"/>
+                    </div>
+                </div>
+                <br>
             </form>
             <br>
             <div class = "row">
                 <div class = "col-lg-6 text-center" style = "margin: 0 auto;">
-                    <a href = "serviceProviderRegistration.php" style = "font-size: 12px;">Not an existing provider? Click here to Sign Up</a>
+                    <a href = "serviceProviderRegistration.php" style = "font-size: 14px;">Not an existing provider? Click here to Sign Up</a>
                 </div>
             </div>
         </div>
