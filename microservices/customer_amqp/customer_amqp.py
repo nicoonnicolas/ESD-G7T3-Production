@@ -85,6 +85,18 @@ def editCustomer(customerMobile, customerName, customerAddress):
                               properties=pika.BasicProperties(delivery_mode=2))
         print("Customer sent to update")
 
+@app.route("/customer_amqp/customer_name/<string:customer_mobile>", methods=['GET'])
+def getCustomerName(customer_mobile):
+    customer = [
+        c for c in customersInJSON()["customers"]
+        if c["customer_mobile"] == customer_mobile
+    ]
+    if len(customer) == 1:
+        return customer[0]['customer_name']
+    else:
+        return {
+           "Customer not found!"
+        }
 
 @app.route("/customer_amqp/register/<string:customer_mobile>", methods=['POST'])
 def registerCustomer(customer_mobile):
