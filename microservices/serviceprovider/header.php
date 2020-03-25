@@ -26,6 +26,7 @@
                 </div>
             </li>
             <a class="nav-item nav-link" href="../microservices/review/createReview.html">Reviews</a>
+            <a class="nav-item nav-link" href="../doLogout.php">Logout</a>
 
         </div>
     </div>
