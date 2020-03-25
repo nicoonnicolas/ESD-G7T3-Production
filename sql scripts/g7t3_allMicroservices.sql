@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 24, 2020 at 11:03 AM
+-- Generation Time: Mar 25, 2020 at 11:19 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -35,9 +35,11 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `booking_id` int(11) NOT NULL,
   `customer_mobile` varchar(8) NOT NULL,
   `provider_mobile` varchar(8) NOT NULL,
+  `provider_service` varchar(128) NOT NULL,
   `booking_time` varchar(5) NOT NULL,
   `booking_date` varchar(10) NOT NULL,
   `booking_price` double(5,2) NOT NULL,
+  `booking_status` int(1) DEFAULT NULL,
   PRIMARY KEY (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `booking_time`, `booking_date`, `booking_price`) VALUES
-(50000001, '91239123', '90000000', '14:37', '2020-03-06', 50.99),
-(50000002, '81112222', '90000000', '19:37', '2020-03-06', 65.70);
+INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `provider_service`, `booking_time`, `booking_date`, `booking_price`, `booking_status`) VALUES
+(50000001, '91239123', '2', 'Strumming', '19:00', 'fri', 35.67, 0),
+(50000002, '81112222', '2', 'Fingserstyle', '16:21', 'tue', 16.21, 1);
 --
 -- Database: `g7t3_customer`
 --
