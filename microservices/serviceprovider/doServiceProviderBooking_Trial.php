@@ -24,13 +24,15 @@ if (isset($_POST['booking_id'])) {
 ?>
 <!DOCTYPE HTML>
 <html>
-    <body>
-        <?php if ($message == "") { ?>
-            <meta http-equiv="refresh" content="0; url=serviceProviderBooking_Trial.php">
-        <?php
+
+<body>
+    <?php if ($message == "") { ?>
+    <meta http-equiv="refresh" content="0; url=serviceProviderBooking_Trial.php">
+    <?php
         } else {
             echo $message;
         }
         ?>
-    </body>
+</body>
+
 </html>
