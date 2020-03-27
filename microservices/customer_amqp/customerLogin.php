@@ -67,7 +67,7 @@
                             alert("Cannot log in!");
                         } else {
                             alert("Hello welcome!");
-                            window.location.replace("../../app/index.html");
+                            window.location.replace("../booking/booking.php?mobile_number=" + customer_mobile);
                         }
                     } catch (error) {
                         $('.errormsg').remove();
