@@ -89,7 +89,13 @@ if (isset($_SESSION['mobile_number'])) {
                                         eachRow +=
                                         "<td>Service Not Yet Provided</td>";
                                     } else {
-                                        eachRow += "<td><a href='../review/createReview.php'>Create Review</a></td>";
+                                        var urlString = "<a href='../review/createReview.php?booking_id=" 
+                                                + booking.booking_id + "'>";
+                                        eachRow += "<td>" + 
+                                                        urlString + 
+                                                        "Proceed Review" + 
+                                                        "</a>" + 
+                                                   "</td>";
                                     }
                             rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                         }
