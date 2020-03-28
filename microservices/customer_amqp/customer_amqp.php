@@ -99,7 +99,7 @@
                 $("#main_container").append("<label>" + message + "</label>");
             }
             $(async() => {
-                var serviceURL = "http://127.0.0.1:1000/customer";
+                var serviceURL = "http://127.0.0.1:1000/customer_amqp";
                 try {
                     const response = await fetch(serviceURL, {method: "GET"});
                     const data = await response.json();
