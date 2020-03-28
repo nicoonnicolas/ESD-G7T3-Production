@@ -1,7 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 session_start();
-<<<<<<< HEAD
 if(isset($_GET['mobile_number'])){
     $customerMobile = $_GET['mobile_number'];
     $_SESSION['mobile_number'] = $customerMobile;
@@ -10,10 +9,6 @@ if(isset($_GET['mobile_number'])){
 
 
 ?>
-=======
-$customerMobile = $_GET['mobile_number'];
-$_SESSION['mobile_number'] = $customerMobile;
->>>>>>> parent of 699ed4a... Merge branch 'master' of https://github.com/nicoonnicolas/ESD-G7T3-Production
 
 
 ?>
