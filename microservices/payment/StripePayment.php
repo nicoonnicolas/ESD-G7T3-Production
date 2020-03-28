@@ -2,68 +2,68 @@
 
 <html lang="en">
 
-<head>
+    <head>
 
-  <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 
-  <title>Pay Page</title>
+        <title>Pay Page</title>
 
-</head>
+    </head>
 
-<body>
+    <body>
+        <?php include ("../../app/globalCustomerHeader.php") ?>
+        <div class="container">
 
-  <div class="container">
+            <h2 class="my-4 text-center">Payment</h2>
 
-    <h2 class="my-4 text-center"></h2>
+            <form action="" method="post" id="payment-form">
 
-    <form action="" method="post" id="payment-form">
+                <div class="form-row">
 
-      <div class="form-row">
+                    <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
 
-       <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
+                    <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
 
-       <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
+                    <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
 
-       <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
+                    <div id="card-element" class="form-control">
 
-        <div id="card-element" class="form-control">
+                        <!-- a Stripe Element will be inserted here. -->
 
-          <!-- a Stripe Element will be inserted here. -->
+                    </div>
+
+
+
+                    <!-- Used to display form errors -->
+
+                    <div id="card-errors" role="alert"></div>
+
+                </div>
+
+
+
+                <button>Submit Payment</button>
+
+            </form>
 
         </div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+        <script src="https://js.stripe.com/v3/"></script>
 
-        <!-- Used to display form errors -->
+        <script src="../js/charge.js"></script>
 
-        <div id="card-errors" role="alert"></div>
-
-      </div>
-
-
-
-      <button>Submit Payment</button>
-
-    </form>
-
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <script src="https://js.stripe.com/v3/"></script>
-
-  <script src="../js/charge.js"></script>
-
-</body>
+    </body>
 
 </html>
