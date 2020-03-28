@@ -5,14 +5,7 @@ if(isset($_GET['mobile_number'])){
     $customerMobile = $_GET['mobile_number'];
     $_SESSION['mobile_number'] = $customerMobile;
 }
-
-
-
 ?>
-
-
-?>
-
 
 <!DOCTYPE html>
 <html>
