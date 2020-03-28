@@ -34,20 +34,20 @@ if (!$link) {
             <div class="row">
                 <h1 class="display-4">Bookings</h1>          
 
-            <table class="table" id="booking_table">
-                <thead>
-                    <tr>
-                        <th>Booking Number</th>
-                        <th>Service Provider</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Price</th>
-                        <th>Review Status</th>
-                        <th>Payment Status</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+                <table class="table" id="booking_table">
+                    <thead>
+                        <tr>
+                            <th>Booking Number</th>
+                            <th>Service Provider</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Review Status</th>
+                            <th>Payment Status</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
     </body>
 
     <script>
@@ -77,46 +77,45 @@ if (isset($_SESSION['mobile_number'])) {
                 var bookings = data.bookings;
                 console.log(bookings);
 
-                    if (!bookings || !bookings.length) {
-                        showError("No bookings found!");
-                    } else {
-                        var rows = "";
-                        for (const booking of bookings) {
-                            var bookingDate = booking.booking_date;
-                            bookingDate = bookingDate.split("-").reverse().join("/");
-                            eachRow =
-                                    "<td>" + booking.booking_id + "</td>" +
-                                    "<td>" + booking.provider_name + "</td>" +
-                                    "<td>" + bookingDate + "</td>" +
-                                    "<td>" + booking.booking_time + "</td>" +
-                                    "<td> $" + booking.booking_price + "</td>" ;
-                                    // "<td>" + booking.booking_status + "</td>" ;
-                                    // console.log(booking.booking_status);
-                                    if (booking.booking_status === 0) {
-                                        eachRow +=
-                                        "<td>Service Not Yet Provided</td>";
-                                    } else {
-                                        var urlString = "<a href='../review/createReview.php?booking_id=" 
-                                                + booking.booking_id + "'>";
-                                        eachRow += "<td>" + 
-                                                        urlString + 
-                                                        "Proceed Review" + 
-                                                        "</a>" + 
-                                                   "</td>";
-                                    }
+                if (!bookings || !bookings.length) {
+                    showError("No bookings found!");
+                } else {
+                    var rows = "";
+                    for (const booking of bookings) {
+                        var bookingDate = booking.booking_date;
+                        bookingDate = bookingDate.split("-").reverse().join("/");
+                        eachRow =
+                                "<td>" + booking.booking_id + "</td>" +
+                                "<td>" + booking.provider_name + "</td>" +
+                                "<td>" + bookingDate + "</td>" +
+                                "<td>" + booking.booking_time + "</td>" +
+                                "<td> $" + booking.booking_price + "</td>";
+                        // "<td>" + booking.booking_status + "</td>" ;
+                        // console.log(booking.booking_status);
+                        if (booking.booking_status === 0) {
+                            eachRow +=
+                                    "<td>Service Not Yet Provided</td>";
+                        } else {
+                            var urlString = "<a href='../review/createReview.php?booking_id="
+                                    + booking.booking_id + "'>";
+                            eachRow += "<td>" +
+                                    urlString +
+                                    "Proceed Review" +
+                                    "</a>" +
+                                    "</td>";
+                        }
 
-                                    if (booking.booking_payment_status === 0) {
-                                        eachRow +=
-                                        "<td><a href = '../payment/doPayment.php'>Not Paid</a></td>";
-                                    } else {
-                                        eachRow += "<td>Paid</td>";
-                                    }
-                            rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                        if (booking.booking_payment_status === 0) {
+                            eachRow +=
+                                    "<td><a href = '../payment/doPayment.php'>Not Paid</a></td>";
+                        } else {
+                            eachRow += "<td>Paid</td>";
                         }
                         rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                     }
-                    $('#booking_table').append(rows);
+                    rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                 }
+                $('#booking_table').append(rows);
             } catch (error) {
                 // Errors when calling the service; such as network error, 
                 // service offline, etc
