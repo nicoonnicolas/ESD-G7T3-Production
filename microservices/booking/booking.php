@@ -34,6 +34,7 @@ if(isset($_GET['mobile_number'])){
                         <th>Time</th>
                         <th>Price</th>
                         <th>Review Status</th>
+                        <th>Payment Status</th>
                     </tr>
                 </thead>
             </table>
@@ -96,6 +97,13 @@ if (isset($_SESSION['mobile_number'])) {
                                                         "Proceed Review" + 
                                                         "</a>" + 
                                                    "</td>";
+                                    }
+
+                                    if (booking.booking_payment_status === 0) {
+                                        eachRow +=
+                                        "<td><a href = '../payment/doPayment.php'>Not Paid</a></td>";
+                                    } else {
+                                        eachRow += "<td>Paid</td>";
                                     }
                             rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                         }
