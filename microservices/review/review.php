@@ -30,7 +30,7 @@
                 </thead>
             </table>
         </div>
-        <a id="addReviewBtn" class="btn btn-primary" href="createReview.php">Add a review</a>
+        <!-- <a id="addReviewBtn" class="btn btn-primary" href="createReview.php">Add a review</a> -->
     </div>
 
         <!-- <footer class="page-footer font-small" style = "background-color: #007bff">
