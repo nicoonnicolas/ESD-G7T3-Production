@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask (__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_review'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_review'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -13,9 +13,9 @@ db = SQLAlchemy(app)
 class Review(db.Model):
     __tablename__ = "review"
     
-    booking_id = db.Column(db.Integer, primary_key=True)
-    review_star = db.Column(db.Integer, nullable=False)
-    review_comment = db.Column(db.Integer, nullable=True)
+    booking_id = db.Column(db.String, primary_key=True)
+    review_star = db.Column(db.String, nullable=False)
+    review_comment = db.Column(db.String, nullable=True)
 
     def __init__(self, booking_id, review_star, review_comment):
         self.booking_id = booking_id
