@@ -107,6 +107,8 @@ if (isset($_SESSION['mobile_number'])) {
                         .provider_name + "'/>" +
                         "<input type='hidden' name='provider_mobile' value='" + serviceProvider
                         .provider_mobile + "'/>" +
+                        "<input type='hidden' name='provider_name' value='" + serviceProvider
+                        .provider_name + "'/>" +
                         "<input type='hidden' name='provider_time' value='" + serviceProvider
                         .provider_time + "'/>" +
                         "<input type='hidden' name='provider_day' value='" + serviceProvider.provider_day +
