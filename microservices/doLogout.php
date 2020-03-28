@@ -8,7 +8,7 @@ if (isset($_SESSION['mobile_number'])) {
 <html>
     <head>
         <title>Logout</title>
-        <meta http-equiv="refresh" content="0; url=customer_amqp/customerLogin.php" />
+        <meta http-equiv="refresh" content="0; url=land.php" />
     </head>
     <body>
         <?php //echo $message; ?>    
