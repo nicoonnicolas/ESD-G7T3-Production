@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5 class="card-title">View Customers</h5>
                         <p class="card-text">Click here to view customer information</p>
-                        <a href="../customer_amqp/customer_Trial.php" class="btn btn-primary">View Customers</a>
+                        <a href="../customer_amqp/customer_amqp.php" class="btn btn-primary">View Customers</a>
                     </div>
                 </div>
             </div>
