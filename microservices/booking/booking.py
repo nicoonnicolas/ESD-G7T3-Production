@@ -18,16 +18,18 @@ class Booking(db.Model):
     booking_id = db.Column(db.Integer, primary_key=True)
     customer_mobile = db.Column(db.String(8), nullable=False)
     provider_mobile = db.Column(db.String(8), nullable=False)
+    provider_name = db.Column(db.String(128), nullable=True)
     booking_time = db.Column(db.String(5), nullable=False)
     booking_date = db.Column(db.String(10), nullable=False)
     booking_price = db.Column(db.Float(precision=2), nullable=False)
     booking_status = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, booking_id, customer_mobile, provider_mobile,
+    def __init__(self, booking_id, customer_mobile, provider_mobile, provider_name, 
                  booking_time, booking_date, booking_price, booking_status):
         self.booking_id = booking_id
         self.customer_mobile = customer_mobile
         self.provider_mobile = provider_mobile
+        self.provider_name = provider_name
         self.booking_time = booking_time
         self.booking_date = booking_date
         self.booking_price = booking_price
@@ -38,6 +40,7 @@ class Booking(db.Model):
             "booking_id": self.booking_id,
             "customer_mobile": self.customer_mobile,
             "provider_mobile": self.provider_mobile,
+            "provider_name" : self.provider_name,
             "booking_time": self.booking_time,
             "booking_date": self.booking_date,
             "booking_price": self.booking_price,
