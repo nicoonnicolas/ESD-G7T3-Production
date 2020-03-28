@@ -87,7 +87,7 @@ if (isset($_SESSION['mobile_number'])) {
                                     // console.log(booking.booking_status);
                                     if (booking.booking_status === 0) {
                                         eachRow +=
-                                        "<td>Not completed</td>";
+                                        "<td>Service Not Yet Provided</td>";
                                     } else {
                                         eachRow += "<td><a href='../review/createReview.php'>Create Review</a></td>";
                                     }
