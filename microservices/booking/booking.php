@@ -30,7 +30,7 @@ if(isset($_GET['mobile_number'])){
                     <tr>
                         <th>Booking Number</th>
                         <th>Service Provider</th>
-                        <th>Date (dd/mm/yyyy)</th>
+                        <th>Day</th>
                         <th>Time</th>
                         <th>Price</th>
                         <th>Review Status</th>
