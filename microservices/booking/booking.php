@@ -48,6 +48,9 @@ if (!$link) {
                     </thead>
                 </table>
             </div>
+        </div>
+        <a id="addReviewBtn" class="btn btn-primary" href="createBooking.php">Create Booking</a>
+        <a id="addReviewBtn" class="btn btn-primary" href="updateBooking.html">Update Booking</a>
     </body>
 
     <script>
@@ -90,8 +93,6 @@ if (isset($_SESSION['mobile_number'])) {
                                 "<td>" + bookingDate + "</td>" +
                                 "<td>" + booking.booking_time + "</td>" +
                                 "<td> $" + booking.booking_price + "</td>";
-                        // "<td>" + booking.booking_status + "</td>" ;
-                        // console.log(booking.booking_status);
                         if (booking.booking_status === 0) {
                             eachRow +=
                                     "<td>Service Not Yet Provided</td>";
@@ -107,15 +108,14 @@ if (isset($_SESSION['mobile_number'])) {
 
                         if (booking.booking_payment_status === 0) {
                             eachRow +=
-                                    "<td><a href = '../payment/doPayment.php'>Not Paid</a></td>";
+                                    "<td><a href = '../payment/StripePayment.php'>Not Paid</a></td>";
                         } else {
                             eachRow += "<td>Paid</td>";
                         }
                         rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                     }
-                    rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                    $('#booking_table').append(rows);
                 }
-                $('#booking_table').append(rows);
             } catch (error) {
                 // Errors when calling the service; such as network error, 
                 // service offline, etc
