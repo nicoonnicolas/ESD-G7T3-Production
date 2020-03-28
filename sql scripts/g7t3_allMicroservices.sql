@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Mar 27, 2020 at 06:20 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1:3308
+-- Generation Time: Mar 28, 2020 at 07:26 AM
+-- Server version: 8.0.18
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ USE `g7t3_booking`;
 
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
-  `booking_id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_mobile` varchar(8) NOT NULL,
   `provider_mobile` varchar(8) NOT NULL,
   `provider_service` varchar(128) NOT NULL,
@@ -40,16 +40,20 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `booking_date` varchar(10) NOT NULL,
   `booking_price` double(5,2) NOT NULL,
   `booking_status` int(1) DEFAULT NULL,
+  `booking_payment_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`booking_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50000006 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `provider_service`, `booking_time`, `booking_date`, `booking_price`, `booking_status`) VALUES
-(50000001, '91239123', '2', 'Strumming', '19:00', 'fri', 35.67, 0),
-(50000002, '81112222', '2', 'Fingserstyle', '16:21', 'tue', 16.21, 1);
+INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `provider_service`, `booking_time`, `booking_date`, `booking_price`, `booking_status`, `booking_payment_status`) VALUES
+(50000001, '91239123', '2', 'Strumming', '19:00', 'fri', 35.67, 0, 0),
+(50000002, '81112222', '2', 'Fingserstyle', '16:21', 'tue', 16.21, 1, 0),
+(50000003, '91239123', '1', 'Feeding', '18:00', 'fri', 45.00, 0, 0),
+(50000004, '91239123', '2', 'Strumming', '19:00', 'fri', 35.67, 0, 0),
+(50000005, '91239123', '2', 'Piano', '17:44', 'thu', 17.44, 0, 0);
 --
 -- Database: `g7t3_customer`
 --
@@ -79,6 +83,32 @@ INSERT INTO `customer` (`customer_mobile`, `customer_name`, `customer_address`) 
 ('87777777', 'Hello', '81 Victoria St'),
 ('91222222', 'Agnes Lam', 'Singapore Management University, Singapore'),
 ('91239123', 'Nicolas Wijaya', 'Singapore Management University, Singapore');
+--
+-- Database: `g7t3_payment`
+--
+CREATE DATABASE IF NOT EXISTS `g7t3_payment` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `g7t3_payment`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `booking_price` int(11) NOT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12345679 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `booking_id`, `booking_price`) VALUES
+(12345678, 50000001, 12);
 --
 -- Database: `g7t3_review`
 --
@@ -127,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `serviceprovider` (
   `provider_service3` varchar(256) DEFAULT NULL,
   `provider_price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`provider_mobile`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `serviceprovider`
@@ -154,11 +184,11 @@ USE `g7t3_serviceprovidertrial`;
 DROP TABLE IF EXISTS `serviceprovider_trial`;
 CREATE TABLE IF NOT EXISTS `serviceprovider_trial` (
   `provider_mobile` varchar(8) NOT NULL COMMENT 'Serial number for the service provider.',
-  `provider_name` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
+  `provider_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `provider_price` decimal(10,2) NOT NULL,
   `provider_time` varchar(5) NOT NULL,
   `provider_day` varchar(3) NOT NULL,
-  `provider_service` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
+  `provider_service` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`provider_mobile`,`provider_service`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 

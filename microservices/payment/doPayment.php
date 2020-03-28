@@ -68,12 +68,12 @@ if (isset($_POST['booking_id'])) {
             <hr/>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="hello@paws.com">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="hello@paws.com">
                 </div>
                 <div class="form-group col-md-6">
-                <label for="inputPassword4">Mobile Number</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="Mobile Number">
+                <label for="inputMobileNumber">Mobile Number</label>
+                <input type="text" class="form-control" id="inputMobileNumber" placeholder="Mobile Number">
                 </div>
             </div>
             <div class="form-group">
@@ -108,6 +108,13 @@ if (isset($_POST['booking_id'])) {
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Make </button>
+            <?php 
+            $query = "SELECT  FROM booking "
+            . "WHERE inputMobileNumber = '$customer_mobile' AND  ";
+            //        echo $query;
+            $result = mysqli_query($link, $query);
+            
+            echo "Price payable is"?>
         </form>
     </div>    
 
