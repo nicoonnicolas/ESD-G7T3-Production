@@ -1,11 +1,7 @@
 <!DOCTYPE HTML>
-<?php
-session_start();
-$providerMobile = $_SESSION['provider_mobile'];
-?>
 <html>
     <head>
-        <title>Service Providers</title>
+        <title>Customers</title>
         <meta charset="UTF-8">
         <!-- Bootstrap libraries -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,66 +22,67 @@ $providerMobile = $_SESSION['provider_mobile'];
             crossorigin="anonymous">
         </script>
 
-        <script 
+        <script
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous">
         </script>
     </head>
+    <style>
+        body {
+            padding: 20px;
+        }    
+    </style>
+
     <body>
-        <?php include("header.php") ?>  
-        <h1 class="display-4">Service Providers</h1>
+        <h1 class="display-4">Customers</h1>
         <div id="main_container" class="container">
-            <table id="service_table" class='table table-striped' border='1'>
+            <p>
+                <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
+                <a class='btn btn-outline-info' href='../customer/customer.php'>Customers</a> 
+                <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
+                <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
+            </p>
+            <table id="customer_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
-                        <th>Service Provider</th>
-                        <th>Contact Number</th>
-                        <th>Services Provided</th>
-                        <th>Time</th>
-                        <th>Day</th>
-                        <th>Price</th>
+                        <th>Customer Name</th>
+                        <th>Mobile Number</th>
+                        <th>Address</th>
                     </tr>
                 <thead class='thead-dark'>
             </table>
-            <a id="addReviewBtn" class="btn btn-primary" href="../serviceprovider/serviceProviderService_Trial.php">Add Service</a>
+            <a id="addReviewBtn" class="btn btn-primary" href="createCustomer.html">Add Customer</a>
         </div>
         <script>
             function showError(message) {
-                $("#service_table").hide();
+                $("#customer_table").hide();
                 $("#main_container").append("<label>" + message + "</label>");
             }
             $(async() => {
-                var serviceURL = "http://127.0.0.1:1001/serviceprovider_trial/" + <?php echo $providerMobile ?>;
+                var serviceURL = "http://127.0.0.1:1000/customer";
                 try {
                     const response = await fetch(serviceURL, {method: "GET"});
-                    console.log(response);
                     const data = await response.json();
-                    console.log(data);
-                    var serviceProviders = data.serviceProviders;
-                    console.log(serviceProviders);
+                    var customers = data.customers;
 
-                    if (!serviceProviders || !serviceProviders.length) {
-                        showError("No Service Providers Found!");
+                    if (!customers || !customers.length) {
+                        showError("No Customers Found!");
                     } else {
                         var rows = "";
-                        for (const serviceProvider of serviceProviders) {
+                        for (const customer of customers) {
                             var eachRow =
-                                    "<td>" + serviceProvider.provider_mobile + "</td>" +
-                                    "<td>" + serviceProvider.provider_name + "</td>" +
-                                    "<td>" + serviceProvider.provider_service + "</td>" +
-                                    "<td>" + serviceProvider.provider_time + "</td>" +
-                                    "<td>" + serviceProvider.provider_day + "</td>" +
-                                    "<td> $" + serviceProvider.provider_price + "</td>";
+                                    "<td>" + customer.customer_name + "</td>" +
+                                    "<td>" + customer.customer_mobile + "</td>" +
+                                    "<td>" + customer.customer_address + "</td>";
                             rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                         }
-                        $("#service_table").append(rows);
+                        $("#customer_table").append(rows);
                     }
                 } catch (error) {
-                    showError("There is a problem retrieving service provider data, please try again later.<br>" + error);
+                    showError("There is a problem retrieving books data, please try again later.<br>" + error);
                 }
             });
         </script>
     </body>
 </html>
-

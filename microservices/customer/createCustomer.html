@@ -73,7 +73,7 @@
     
           <br/>
 
-        <h1 class="display-4" style = "padding-left: 10%;">Update Customer</h1>
+        <h1 class="display-4" style = "padding-left: 10%;">Create Customer</h1>
         <div id="main-container" class="container">
             <p>
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
@@ -81,14 +81,25 @@
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
                 <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
-            <form id='updateCustomerForm' method="POST">
+            <form id='addCustomerForm' method="POST">
                 Customer Full Name: <br><input type="text" id="customer_name"> <br>
                 Mobile Number: <br><input type="text" id="customer_mobile"> <br>
                 Address: <br><input type="text" id="customer_address"> <br>
                 <br>
-                <button id="updateCustomerBtn" type="button" class='btn btn-primary'>update</button>
+                <button id="addCustomerBtn" type="button" class='btn btn-primary'>Add</button>
             </form>
         </div>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
         <footer class="page-footer font-small" style = "background-color: #007bff">
 
@@ -105,7 +116,7 @@
             function showError(message) {
                 // Hide the table and button in the event of error
                 $('#customer_table').hide();
-                $('#updateCustomerBtn').hide();
+                $('#addCustomerBtn').hide();
 
                 // Display an error under the main container
                 $('#main-container').append("<label class='errormsg'>" + message + "</label>");
@@ -114,7 +125,7 @@
             check = [];
 
             //$("#submit").click(function () {
-            $("#updateCustomerBtn").click(function () {
+            $("#addCustomerBtn").click(function () {
                 $(async () => {
                     var customer_name = $('#customer_name').val();
                     var customer_mobile = $('#customer_mobile').val();

@@ -1,23 +1,12 @@
+   <!--stores all the (admin) navigation links here-->
 
-    <link rel="stylesheet" href="">
-    <!--[if lt IE 9]>
-          <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    <!-- Bootstrap libraries -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
-    </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-    </script>
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+   <link href="css/animate.css" rel="stylesheet">
+   <link href="css/plugins/dropzone/basic.css" rel="stylesheet">
+   <link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+   <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+   <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet">
+   <link href="css/css-loader.css" rel="stylesheet">
+   <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
