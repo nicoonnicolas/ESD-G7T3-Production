@@ -66,9 +66,9 @@ header("Access-Control-Allow-Origin: *");
         $("#addReviewBtn").click(function () {
             $(async () => {
                 var booking_id = $('#booking_id').val();
+                console.log(booking_id)
                 var review_star = $('#review_star').val();
                 var review_comment = $('#review_comment').val();
-
                 var serviceURL = "http://localhost:1003/review" + "/" + booking_id;
                 console.log(serviceURL)
 
