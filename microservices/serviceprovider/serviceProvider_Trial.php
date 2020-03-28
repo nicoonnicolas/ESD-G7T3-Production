@@ -7,35 +7,35 @@ $providerMobile = $_SESSION['provider_mobile'];
     <head>
         <title>Service Providers</title>
         <meta charset="UTF-8">
-        <!-- Bootstrap libraries -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Latest compiled and minified CSS -->
-        <link 
-            rel="stylesheet" 
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
-            crossorigin="anonymous">
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <script 
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" 
-            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-            crossorigin="anonymous">
-        </script>
-
-        <script 
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-            crossorigin="anonymous">
-        </script>
+        <?php include("../../app/globalCSS.php"); ?>
     </head>
+
+    <style>
+    .container-fluid {
+        padding: 30px;
+    }
+</style>
+
+
     <body>
-        <?php include("header.php") ?>  
+    <?php include("../../app/globalSPHeader.php"); ?>
+    <div class="container-fluid">
+        <div class="row">
         <h1 class="display-4">Service Providers</h1>
-        <div id="main_container" class="container">
+        <table class="table" id="service_table">
+                <thead>
+                <tr>
+                        <th>Service Provider</th>
+                        <th>Contact Number</th>
+                        <th>Services Provided</th>
+                        <th>Time</th>
+                        <th>Day</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+            </table>
+            <a id="addReviewBtn" class="btn btn-primary" href="../serviceprovider/serviceProviderService_Trial.php">Add Service</a>
+        <!-- <div id="main_container" class="container">
             <table id="service_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
@@ -49,7 +49,9 @@ $providerMobile = $_SESSION['provider_mobile'];
                 <thead class='thead-dark'>
             </table>
             <a id="addReviewBtn" class="btn btn-primary" href="../serviceprovider/serviceProviderService_Trial.php">Add Service</a>
-        </div>
+        </div> -->
+</div>
+</div>
         <script>
             function showError(message) {
                 $("#service_table").hide();
