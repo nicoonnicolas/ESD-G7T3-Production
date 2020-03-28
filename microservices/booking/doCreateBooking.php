@@ -23,11 +23,12 @@ echo $customerMobile;
 $providerMobile = $_POST['provider_mobile'];
 //echo $providerMobile;
 $providerService = $_POST['provider_service'];
+$providerName = $_POST['provider_name'];
 $providerDay = $_POST['provider_day'];
 $providerTime = $_POST['provider_time'];
 $providerPrice = $_POST['provider_price'];
-$query = "INSERT INTO booking (customer_mobile, provider_mobile, provider_service, booking_time, booking_date, booking_price,booking_status) "
-        . "VALUES ('$customerMobile','$providerMobile','$providerService', '$providerTime', '$providerDay', '$providerPrice', 0)";
+$query = "INSERT INTO booking (customer_mobile, provider_mobile, provider_name, provider_service, booking_time, booking_date, booking_price,booking_status) "
+        . "VALUES ('$customerMobile','$providerMobile', '$providerName', '$providerService', '$providerTime', '$providerDay', '$providerPrice', 0)";
 $result = mysqli_query($link, $query);
 if ($result) {
         echo "<script> alert('You have created a booking.') </script>";
