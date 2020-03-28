@@ -85,7 +85,8 @@
 
         <form class="form-signin">
         <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
-        <h1 class="h3 mb-3 font-weight-normal">Paws System</h1>
+        <h1 class="h1 mb-3 font-weight-normal">Paws System</h1>
+        <h2 class="h6 mb-3 font-weight-normal">Customer Login</h2>
         <label for="inputEmail" class="sr-only">Mobile Number</label>
         <input type="text" name="mobile_number" id="customer_mobile" class="form-control" placeholder="Mobile Number" required autofocus> <br>
         <button class="btn btn-lg btn-primary btn-block" type="button" id="addCustomerBtn">Sign in</button>
