@@ -6,7 +6,7 @@ app = Flask(__name__)  # making book.py as a Flask app
 CORS(app)
 
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_booking'
+    'SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_booking'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 db = SQLAlchemy(app)
@@ -23,9 +23,10 @@ class Booking(db.Model):
     booking_date = db.Column(db.String(10), nullable=False)
     booking_price = db.Column(db.Float(precision=2), nullable=False)
     booking_status = db.Column(db.Integer, nullable=False)
+    booking_payment_status= db.Column(db.Integer, nullable=False)
 
-    def __init__(self, booking_id, customer_mobile, provider_mobile, provider_name, 
-                 booking_time, booking_date, booking_price, booking_status):
+    def __init__(self, booking_id, customer_mobile, provider_mobile, provider_name,
+                 booking_time, booking_date, booking_price, booking_status, booking_payment_status):
         self.booking_id = booking_id
         self.customer_mobile = customer_mobile
         self.provider_mobile = provider_mobile
@@ -34,6 +35,7 @@ class Booking(db.Model):
         self.booking_date = booking_date
         self.booking_price = booking_price
         self.booking_status = booking_status
+        self.booking_payment_status = booking_payment_status
 
     def json(self):
         return {
@@ -44,7 +46,8 @@ class Booking(db.Model):
             "booking_time": self.booking_time,
             "booking_date": self.booking_date,
             "booking_price": self.booking_price,
-            "booking_status": self.booking_status
+            "booking_status": self.booking_status,
+            "booking_payment_status": self.booking_payment_status
         }
 
 
