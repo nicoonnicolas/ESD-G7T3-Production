@@ -39,7 +39,7 @@ if (!isset($_SESSION['provider_mobile'])) {
     }
 } else {
     $message .= "You are already logged in!";
-    header("Location: ../../app/index.html"); /* Redirect browser */
+    header("Location: ../../microservices/serviceprovider/serviceProviderIndex.php"); /* Redirect browser */
     exit();
 }
 ?>
