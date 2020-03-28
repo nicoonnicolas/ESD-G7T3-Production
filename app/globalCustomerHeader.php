@@ -43,11 +43,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../booking/booking.php">Bookings</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="../serviceprovider/serviceprovider.php">Service Providers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../review/review.php">Reviews</a>
+                    <a class="nav-link" href="../review/review.php">Past Reviews</a>
                 </li>
                 <a class="nav-item nav-link" href="../doLogout.php">Logout</a>
             </ul>
