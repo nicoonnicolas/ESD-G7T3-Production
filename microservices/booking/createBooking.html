@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Customers</title>
+        <title>Create Booking</title>
         <meta charset="UTF-8">
         <!-- Bootstrap libraries -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -73,7 +73,7 @@
     
           <br/>
 
-        <h1 class="display-4" style = "padding-left: 10%;">Update Customer</h1>
+        <h1 class="display-4" style = "padding-left: 10%;">Create Booking</h1>
         <div id="main-container" class="container">
             <p>
                 <a class="btn btn-outline-info" href="../booking/booking.php">Bookings</a>
@@ -81,31 +81,33 @@
                 <a class='btn btn-outline-info' href='../serviceprovider/serviceprovider.php'>Service Providers</a>
                 <a class='btn btn-outline-info' href='../review/review.php'>Reviews</a>
             </p>
-            <form id='updateCustomerForm' method="POST">
-                Customer Full Name: <br><input type="text" id="customer_name"> <br>
-                Mobile Number: <br><input type="text" id="customer_mobile"> <br>
-                Address: <br><input type="text" id="customer_address"> <br>
+            <form id='createbookingForm' method="POST">
+                Booking ID: <br><input type="text" id="booking_id"> <br>
+                Booking Date: <br><input type="text" id="booking_date"> <br>
+                Booking Time: <br><input type="text" id="booking_time"> <br>
+                Booking Price: <br><input type="text" id="booking_price"> <br>
+                Customer Mobile: <br><input type="text" id="customer_mobile"> <br>
+                Provider Mobile: <br><input type="text" id="provider_mobile"> <br>
                 <br>
-                <button id="updateCustomerBtn" type="button" class='btn btn-primary'>update</button>
+                <button id="createBookingBtn" type="button" class='btn btn-primary'>Create</button>
             </form>
         </div>
 
         <footer class="page-footer font-small" style = "background-color: #007bff">
-
           <!-- Copyright -->
           <div class="footer-copyright text-center py-3" style = "color: white;">© 2020 Copyright:
           ESD G7T3
           </div>
           <!-- Copyright -->
-      
         </footer>
 
+
         <script>
-            $('#customer_table').hide();
+            $('#booking_table').hide();
             function showError(message) {
                 // Hide the table and button in the event of error
-                $('#customer_table').hide();
-                $('#updateCustomerBtn').hide();
+                $('#booking_table').hide();
+                $('#createBookingBtn').hide();
 
                 // Display an error under the main container
                 $('#main-container').append("<label class='errormsg'>" + message + "</label>");
@@ -114,17 +116,20 @@
             check = [];
 
             //$("#submit").click(function () {
-            $("#updateCustomerBtn").click(function () {
+            $("#createBookingBtn").click(function () {
                 $(async () => {
-                    var customer_name = $('#customer_name').val();
+                    var booking_id = $('#booking_id').val();
+                    var booking_date = $('#booking_date').val();
+                    var booking_time = $('#booking_time').val();
+                    var booking_price = $('#booking_price').val();
+                    var provider_mobile = $('#provider_mobile').val();
                     var customer_mobile = $('#customer_mobile').val();
-                    var customer_address = $('#customer_address').val();
 
-                    var serviceURL = "http://localhost:1000/customer/" + customer_mobile;
+
+                    var serviceURL = "http://localhost:1002/booking/" + booking_id;
                     console.log(serviceURL)
-                    // console.log(customer_name)
-                    // console.log(customer_mobile)
-                    // console.log(customer_address)
+                    console.log(booking_date)
+                    console.log(booking_time)
 
                     try {
                         const response =
@@ -132,7 +137,8 @@
                                         serviceURL, {
                                             method: 'POST',
                                             headers: {"Content-Type": "application/json"},
-                                            body: JSON.stringify({customer_name: customer_name, customer_address: customer_address})
+                                            body: JSON.stringify({booking_price: booking_price, customer_mobile: customer_mobile, 
+                                            provider_mobile: provider_mobile, booking_date: booking_date, booking_time: booking_time})
                                         });
                         console.log(response)
                         const data = await response.json();
@@ -140,7 +146,7 @@
                         $('.errormsg').remove();
                         // Errors when calling the service; such as network error, 
                         // service offline, etc
-                        showError('There is a problem retrieving customer data, please try again later.<br>' + error);
+                        showError('There is a problem retrieving booking data, please try again later.<br>' + error);
                     } // error
                 });
             })
