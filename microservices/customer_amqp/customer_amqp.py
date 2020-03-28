@@ -5,13 +5,27 @@ import random
 import datetime
 import pika
 
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
+app = Flask (__name__)
+CORS(app)
+
 
 class Customer:
     with open("g7t3_customer.json") as customerJsonFile:
         customers = json.load(customerJsonFile)
     customerJsonFile.close()
 
+    def json(self):
+        return {
+        "customer_mobile": self.customer_mobile, 
+        "customer_name": self.customer_name, 
+        "customer_address": self.customer_address
+        }
 
+@app.route("/customer_amqp", methods=['GET'])
 def customersInJSON():
     return Customer.customers
 
@@ -26,7 +40,7 @@ def displayCustomers():
         print(customer['customer_address'])
         print()
 
-
+@app.route("/customer_amqp/login/<string:customerMobile>", methods=['GET'])
 def findCustomerByMobile(customerMobile):
     customer = [
         c for c in customersInJSON()["customers"]
@@ -34,14 +48,6 @@ def findCustomerByMobile(customerMobile):
     ]
     if len(customer) == 1:
         return customer[0]
-    elif len(customer) > 1:
-        return {
-            "message":
-            "Multiple customers found for mobile number " +
-            str(customerMobile),
-            "customers":
-            customer
-        }
     else:
         return {
             "message":
@@ -79,26 +85,48 @@ def editCustomer(customerMobile, customerName, customerAddress):
                               properties=pika.BasicProperties(delivery_mode=2))
         print("Customer sent to update")
 
+@app.route("/customer_amqp/customer_name/<string:customer_mobile>", methods=['GET'])
+def getCustomerName(customer_mobile):
+    customer = [
+        c for c in customersInJSON()["customers"]
+        if c["customer_mobile"] == customer_mobile
+    ]
+    if len(customer) == 1:
+        return customer[0]['customer_name']
+    else:
+        return {
+           "Customer not found!"
+        }
+
+@app.route("/customer_amqp/register/<string:customer_mobile>", methods=['POST'])
+def registerCustomer(customer_mobile):
+    customer = [
+        c for c in customersInJSON()["customers"]
+        if c["customer_mobile"] == customer_mobile
+    ]
+    print(customer)
+    if len(customer) > 0:
+        return jsonify({
+            "message": "A customer with Customer ID '{}' exists.".format(customer_mobile)
+            }), 400
+    data = request.get_json()
+    print(data)
+    customers = customersInJSON();
+    customer = {
+        "customer_mobile" : customer_mobile,
+        "customer_name" : data['customer_name'],
+        "customer_address" : data['customer_address']
+    }
+    customers['customers'].append(customer)
+    with open("g7t3_customer.json", "w") as customerJsonFile:
+        json.dump(customers, customerJsonFile)
+
+    result = {
+        "status": 1,
+        "message": "Always successful",
+        "customer": customer
+    }
+    return result
 
 if __name__ == "__main__":
-    print("This is " + os.path.basename(__file__) + ": processing...")
-    print("Option 1: Display All Customers")
-    print("Option 2: Edit Customers")
-    print("Option 0: Quit")
-    option = int(input("Enter Option > "))
-    while option > 0:
-        if option == 1:
-            displayCustomers()
-        elif option == 2:
-            customerMobile = input("Enter customer mobile > ")
-            if "message" in (findCustomerByMobile(customerMobile)):
-                print("***Mobile number not found!***")
-            else:
-                customerName = input("Enter customer name > ")
-                customerAddress = input("Enter customer address > ")
-                print(editCustomer(customerMobile, customerName, customerAddress))
-        print("**********")
-        print("Option 1: Display All Customers")
-        print("Option 2: Edit Customers")
-        print("Option 0: Quit")
-        option = int(input("Enter Option > "))
+    app.run(host = '0.0.0.0',port=1000, debug=True)

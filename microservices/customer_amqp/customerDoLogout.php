@@ -1,14 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION['mobile_number'])) {
-    unset ($_SESSION['mobile_number']);
-}
+session_destroy();
 ?>
 <!DOCTYPE HTML>
 <html>
     <head>
         <title>Logout</title>
-        <meta http-equiv="refresh" content="0; url=login.php" />
+        <meta http-equiv="refresh" content="0; url=customerLogin.php" />
     </head>
     <body>
         <?php //echo $message; ?>    

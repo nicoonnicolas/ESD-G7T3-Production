@@ -66,9 +66,15 @@ header("Access-Control-Allow-Origin: *");
         $("#addReviewBtn").click(function () {
             $(async () => {
                 var booking_id = $('#booking_id').val();
+<<<<<<< HEAD
                 console.log(booking_id)
                 var review_star = $('#review_star').val();
                 var review_comment = $('#review_comment').val();
+=======
+                var review_star = $('#review_star').val();
+                var review_comment = $('#review_comment').val();
+
+>>>>>>> parent of 699ed4a... Merge branch 'master' of https://github.com/nicoonnicolas/ESD-G7T3-Production
                 var serviceURL = "http://localhost:1003/review" + "/" + booking_id;
                 console.log(serviceURL)
 
