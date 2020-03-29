@@ -20,7 +20,7 @@ if (!$link) {
 <html>
     <head>
         <title>Bookings</title>
-        <?php include("../../app/globalCSS.php"); ?>
+        <?php include("../../../app/globalCSS.php"); ?>
 
         <style>
             .container-fluid {
@@ -29,7 +29,7 @@ if (!$link) {
         </style>
 
     <body>
-        <?php include("../../app/globalCustomerHeader.php"); ?>
+        <?php include("../../../app/globalCustomerHeader.php"); ?>
         <div class="container-fluid">
             <div class="row">
                 <h1 class="display-4">Bookings</h1>          
