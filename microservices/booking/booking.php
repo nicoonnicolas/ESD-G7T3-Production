@@ -111,6 +111,7 @@ if (isset($_SESSION['mobile_number'])) {
 
                         if (booking.booking_payment_status === 0) {
                             eachRow +=
+<<<<<<< HEAD
                             "<td>" + 
                                 "<form action = 'makePayment.php' method = 'post'>" +
                                     "<input type='hidden' name='payment_id' value='" + booking.booking_id + "'/>" +
@@ -123,6 +124,11 @@ if (isset($_SESSION['mobile_number'])) {
                                 + "</form>" 
                             + "</td>"
                         
+=======
+                                    "<td><a href = '../payment/StripePayment.php?booking_id=" + 
+                                    booking.booking_id +
+                                    "'>Not Paid</a></td>";
+>>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
                         } else {
                             eachRow += "<td><button class = 'btn btn-danger disabled'>Paid</button></td>";
                         }
