@@ -3,6 +3,7 @@
 session_start();
 if (isset($_SESSION['mobile_number'])) {
     $customerMobile = $_SESSION['mobile_number'];
+
 } else {
     header("Location: ../customer_amqp/login.php"); /* Redirect browser */
     exit();
@@ -11,7 +12,7 @@ if (isset($_SESSION['mobile_number'])) {
 $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
-$DB = "g7t3_booking";
+$DB = "g7t3_payment";
 $link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 if (!$link) {
     die(mysqli_error($link));
@@ -20,19 +21,21 @@ if (!$link) {
 $message = "";
 $customerMobile = $_POST['customer_mobile'];
 echo $customerMobile;
-$providerMobile = $_POST['provider_mobile'];
-//echo $providerMobile;
-$providerService = $_POST['provider_service'];
-$providerName = $_POST['provider_name'];
-$providerDay = $_POST['provider_day'];
-$providerTime = $_POST['provider_time'];
-$providerPrice = $_POST['provider_price'];
-$query = "INSERT INTO booking (customer_mobile, provider_mobile, provider_name, provider_service, booking_time, booking_date, booking_price,booking_status) "
-        . "VALUES ('$customerMobile','$providerMobile', '$providerName', '$providerService', '$providerTime', '$providerDay', '$providerPrice', 0)";
+$paymentID = $_POST['payment_id'];
+$bookingPrice = $_POST['booking_price'];
+$bookingID = $_POST['booking_id'];
+echo $paymentID;
+echo $bookingPrice;
+
+$query = "INSERT INTO payment (payment_id, booking_id, booking_price) "
+        . "VALUES ('$paymentID','$bookingID', '$bookingPrice')";
+
 $result = mysqli_query($link, $query);
+echo $result;
+
 if ($result) {
-        echo "<script> alert('You have created a booking.') </script>";
-        header("Location: ../booking/booking.php?mobile_number=$customerMobile");
+        echo "<script> alert('Redirecting to payment gateway') </script>";
+        header("Location: ../payment/StripePayment.php?payment_id=$paymentID");
 }   else {
     echo "<script> alert('Unsuccesful la fuck ') </script>";
     // $message = '<a href="booking.php">Return to previous page</a></h4>';
