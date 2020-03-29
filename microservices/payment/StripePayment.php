@@ -1,3 +1,9 @@
+<?php 
+if(isset($_GET['booking_id']){
+    $bookingID = $_GET['booking_id'];
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">

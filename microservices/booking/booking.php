@@ -108,7 +108,9 @@ if (isset($_SESSION['mobile_number'])) {
 
                         if (booking.booking_payment_status === 0) {
                             eachRow +=
-                                    "<td><a href = '../payment/StripePayment.php'>Not Paid</a></td>";
+                                    "<td><a href = '../payment/StripePayment.php?booking_id=" + 
+                                    booking.booking_id +
+                                    "'>Not Paid</a></td>";
                         } else {
                             eachRow += "<td>Paid</td>";
                         }
