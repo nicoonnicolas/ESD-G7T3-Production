@@ -26,7 +26,7 @@
 
             <h2 class="my-4 text-center">Payment</h2>
 
-            <form action="" method="post" id="payment-form">
+            <form action="charge.php" method="post" id="payment-form">
 
                 <div class="form-row">
 
