@@ -10,7 +10,7 @@ $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
 $DB = "g7t3_serviceprovidertrial";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3306");
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 if (!$link) {
     die(mysqli_error($link));
 }
@@ -30,9 +30,9 @@ if (!$link) {
 
     <body>
         <?php include("../../app/globalCustomerHeader.php"); ?>
-        <div class="container-fluid">
+        <div class="container" style = "padding-top: 3%">
             <div class="row">
-                <h1 class="display-4">Bookings</h1>          
+                <h1 class="display-4" style = "padding-bottom: 2%">Bookings</h1>          
 
                 <table class="table" id="booking_table">
                     <thead>
@@ -48,9 +48,12 @@ if (!$link) {
                     </thead>
                 </table>
             </div>
+
+            <a id="addReviewBtn" class="btn btn-primary" href="createBooking.php" style = "margin-right: 1%">Create Booking</a>
+            <a id="addReviewBtn" class="btn btn-primary" href="updateBooking.html">Update Booking</a>
+
         </div>
-        <a id="addReviewBtn" class="btn btn-primary" href="createBooking.php">Create Booking</a>
-        <a id="addReviewBtn" class="btn btn-primary" href="updateBooking.html">Update Booking</a>
+        
     </body>
 
     <script>
@@ -108,9 +111,26 @@ if (isset($_SESSION['mobile_number'])) {
 
                         if (booking.booking_payment_status === 0) {
                             eachRow +=
-                                    "<td><a href = '../payment/StripePayment.php'>Not Paid</a></td>";
+<<<<<<< HEAD
+                            "<td>" + 
+                                "<form action = 'makePayment.php' method = 'post'>" +
+                                    "<input type='hidden' name='payment_id' value='" + booking.booking_id + "'/>" +
+                                    "<input type='hidden' name='customer_mobile' value='<?php echo $customerMobile ?>'/>" +
+                                    "<input type='hidden' name='provider_name' value='" + booking.provider_name + "'/>" + 
+                                    "<input type='hidden' name='booking_price' value='" + booking.booking_price + "'/>" +
+                                    "<input type='hidden' name='booking_id' value='" + booking.booking_id + "'/>" + 
+                                    "<input type='hidden' name='service_provided' value='" + booking.booking_price + "'/>" +
+                                    "<input type='submit' class = 'btn btn-primary'  value='Not Paid' />"
+                                + "</form>" 
+                            + "</td>"
+                        
+=======
+                                    "<td><a href = '../payment/StripePayment.php?booking_id=" + 
+                                    booking.booking_id +
+                                    "'>Not Paid</a></td>";
+>>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
                         } else {
-                            eachRow += "<td>Paid</td>";
+                            eachRow += "<td><button class = 'btn btn-danger disabled'>Paid</button></td>";
                         }
                         rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                     }

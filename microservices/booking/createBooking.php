@@ -118,7 +118,9 @@ if (isset($_SESSION['mobile_number'])) {
                         "<input type='hidden' name='provider_price' value='" + serviceProvider
                         .provider_price + "'/>" +
                         "<input type='submit' value='Book' /></form>" +
-                        "</td>";
+                        "</td>"
+                        ;
+
                     rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                 }
                 $("#service_table").append(rows);

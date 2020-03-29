@@ -1,3 +1,32 @@
+<?php 
+<<<<<<< HEAD
+
+session_start();
+
+if (isset($_SESSION['mobile_number'])) {
+    $customerMobile = $_SESSION['mobile_number'];
+} else {
+    header("Location: ../customer_amqp/login.php"); /* Redirect browser */
+    exit();
+}
+
+$HOST = "localhost";
+$USERNAME = "root";
+$PASSWORD = "";
+$DB = "g7t3_payment";
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
+if (!$link) {
+    die(mysqli_error($link));
+}
+
+
+=======
+if(isset($_GET['booking_id']){
+    $bookingID = $_GET['booking_id'];
+}
+>>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -26,9 +55,42 @@
 
             <h2 class="my-4 text-center">Payment</h2>
 
-            <form action="" method="post" id="payment-form">
+<<<<<<< HEAD
+            <h1 class = "display-4">Order details</h1>
+
+            <?php 
+                
+                if(isset($_SESSION['mobile_number'])){
+                    $paymentID = $_GET['payment_id'];
+                    $query = "SELECT * FROM payment "
+                            . "WHERE payment_id = '$paymentID' ";
+                    // echo $query;
+                    $result = mysqli_query($link, $query);
+                
+                    $row = mysqli_fetch_assoc($result);
+
+                    $payment_id = $row['payment_id'];
+                    $booking_id = $row['booking_id'];
+                    $booking_price = $row['booking_price'];
+                    
+                    echo "<h3> Booking ID: $booking_id</h3>";
+                    echo "<h3> Total amount payable: $$booking_price</h3>";
+
+                }
+                
+                ?> 
+
+            <form action="../charge.php" method="post" id="payment-form">
+                
+            <h1 class = "display-4">Billing Address</h1>
+
+=======
+            <form action="charge.php" method="post" id="payment-form">
+>>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
 
                 <div class="form-row">
+
+                    <h1 class = "display-4">Payment Details</h1>
 
                     <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
 
@@ -50,6 +112,31 @@
 
                 </div>
 
+                <?php 
+                
+                if(isset($_SESSION['mobile_number'])){
+                    $paymentID = $_GET['payment_id'];
+                    $query = "SELECT * FROM payment "
+                            . "WHERE payment_id = '$paymentID' ";
+                    // echo $query;
+                    $result = mysqli_query($link, $query);
+                
+                    $row = mysqli_fetch_assoc($result);
+
+                    $payment_id = $row['payment_id'];
+                    $booking_id = $row['booking_id'];
+                    $booking_price = $row['booking_price'];
+                    // echo $row['payment_id'];
+                    // echo $row['booking_id'];
+                    // echo $row['booking_price'];
+
+                    echo "<input type = 'hidden' name='payment_id' value= $payment_id>";
+                    echo "<input type = 'hidden' name='booking_id' value=$booking_id>";
+                    echo "<input type = 'hidden' name='booking_price' value=$booking_price>";
+
+                }
+                
+                ?> 
 
 
                 <button>Submit Payment</button>
