@@ -17,10 +17,10 @@ if (!isset($_POST['booking_id'])) {
     $result = mysqli_query($link, $query);
     if ($result) {
         echo "<script> alert('Booking Status has been updated: Completed!') </script>";
-        header("Location: ../booking/booking.php);
+        header("Location: ../booking/booking.php");
     }
 } else {
-    echo "<script> alert('Booking Status Change: UNSUCCESSFUL :( ') </script>";
+    echo "<script> alert('Booking Status Change: UNSUCCESSFUL :( ' </script>";
     $message = '<a href="serviceProviderBooking_Trial.php">Return to previous page</a></h4>';
 }
 ?>

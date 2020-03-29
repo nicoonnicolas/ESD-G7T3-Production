@@ -1,5 +1,4 @@
 <?php 
-<<<<<<< HEAD
 
 session_start();
 
@@ -20,11 +19,6 @@ if (!$link) {
 }
 
 
-=======
-if(isset($_GET['booking_id']){
-    $bookingID = $_GET['booking_id'];
-}
->>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +49,6 @@ if(isset($_GET['booking_id']){
 
             <h2 class="my-4 text-center">Payment</h2>
 
-<<<<<<< HEAD
             <h1 class = "display-4">Order details</h1>
 
             <?php 
@@ -80,13 +73,10 @@ if(isset($_GET['booking_id']){
                 
                 ?> 
 
-            <form action="../charge.php" method="post" id="payment-form">
+            <form action="charge.php" method="post" id="payment-form">
                 
             <h1 class = "display-4">Billing Address</h1>
 
-=======
-            <form action="charge.php" method="post" id="payment-form">
->>>>>>> af4b98f7743a4bcc2b6039dc464d35fcdfa90de7
 
                 <div class="form-row">
 

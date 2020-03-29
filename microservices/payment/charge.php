@@ -2,10 +2,17 @@
 require_once('vendor/autoload.php');
 \Stripe\Stripe::setApiKey('sk_test_yPcdYCNGIPIsUlTNnWmpnr0400YTRYu5gF');
 
+$paymentID = $_POST['payment_id'];
+$bookingPrice = $_POST['booking_price'];
+$bookingID = $_POST['booking_id'];
+echo $paymentID;
+echo $bookingPrice;
+
 
 // Sanitize POST Array
 
 $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
 $first_name = $POST['first_name'];
 
 $last_name = $POST['last_name'];
@@ -27,15 +34,22 @@ $customer = \Stripe\Customer::create(array(
 
 $charge = \Stripe\Charge::create(array(
 
-    "amount" => 5000,
+    "amount" => (int)$bookingPrice * 100,
   
     "currency" => "sgd",
-  
-    "description" => "Gentle Paws",
   
     "customer" => $customer->id
   
   ));
   
-header('Location: success.php?tid='.$charge->id.'&product='.$charge->description);
+  print_r($charge);
+
+  if(!isset($charge)){
+    echo "This object is null";
+  }else{
+    echo "Do something else";
+    echo "<script>alert('Succesful payment')</script>";
+    header("Location: updatePaymentStatus.php?booking_id=$bookingID");
+  }
+
 ?>
