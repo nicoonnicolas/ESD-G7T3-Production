@@ -120,9 +120,9 @@ if (!$link) {
                     // echo $row['booking_id'];
                     // echo $row['booking_price'];
 
-                    echo "<input type = 'hidden' name='payment_id' value= $payment_id>";
-                    echo "<input type = 'hidden' name='booking_id' value=$booking_id>";
-                    echo "<input type = 'hidden' name='booking_price' value=$booking_price>";
+                    echo "<input type = 'hidden' name='payment_id' value= $payment_id id='payment_id'>";
+                    echo "<input type = 'hidden' name='booking_id' value=$booking_id id='booking_id'>";
+                    echo "<input type = 'hidden' name='booking_price' value=$booking_price id='booking_price'>";
 
                 }
                 
