@@ -5,6 +5,53 @@ $PASSWORD = "";
 $DB = "g7t3_booking";
 $link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 ?>
+
+<?php
+require_once('vendor/autoload.php');
+\Stripe\Stripe::setApiKey('sk_test_yPcdYCNGIPIsUlTNnWmpnr0400YTRYu5gF');
+
+$bookingPrice = $_POST['booking_price'];
+$paymentID = $_POST['payment_id'];
+
+// Sanitize POST Array
+
+$POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+$first_name = $POST['first_name'];
+
+$last_name = $POST['last_name'];
+
+$email = $POST['email'];
+
+$token = $POST['stripeToken'];
+
+// Creating a customer in Stripe
+$customer = \Stripe\Customer::create(array(
+            "email" => $email,
+            "source" => $token
+        ));
+
+// Charge Customer
+
+$charge = \Stripe\Charge::create(array(
+            "amount" => (float)$bookingPrice * 100,
+            "currency" => "sgd",
+            "customer" => $customer->id
+        ));
+
+print_r($charge);
+
+// if (!isset($charge)) {
+//     echo "<script>alert('Unsuccesful payment')</script>";
+//     header("Location: ../booking/booking.php");
+// }else{
+//     echo "Unsucessful payment";
+//     header("Location: ../booking/booking.php");
+// }
+?>
+
+
+
 <html> 
 
     <head>
@@ -38,7 +85,7 @@ $link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 
         <div id = "main-container"> </div>
 
-        <button id = 'updatePaymentStatusButton' class = 'btn btn-primary'> Update Payment Status</button>
+        <button id = 'updatePaymentStatusButton' class = 'btn btn-primary' href = '../booking/booking.php'> Update Payment Status</button>
 
         <script>
             var message = "There is an error";
@@ -79,11 +126,6 @@ $bookingID = $_POST['booking_id'];
 
                         console.log(response)
                         const data = await response.json();
-<?php
-"<script>alert('Payment is sucessfull')</script>";
-header("Location: ../booking/booking.php");
-?>
-
 
                     } catch (error) {
                         $('.errormsg').remove();
@@ -101,43 +143,3 @@ header("Location: ../booking/booking.php");
 
 </html>
 
-<?php
-require_once('vendor/autoload.php');
-\Stripe\Stripe::setApiKey('sk_test_yPcdYCNGIPIsUlTNnWmpnr0400YTRYu5gF');
-
-$bookingPrice = $_POST['booking_price'];
-$paymentID = $_POST['payment_id'];
-
-// Sanitize POST Array
-
-$POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
-
-$first_name = $POST['first_name'];
-
-$last_name = $POST['last_name'];
-
-$email = $POST['email'];
-
-$token = $POST['stripeToken'];
-
-// Creating a customer in Stripe
-$customer = \Stripe\Customer::create(array(
-            "email" => $email,
-            "source" => $token
-        ));
-
-// Charge Customer
-
-$charge = \Stripe\Charge::create(array(
-            "amount" => (int) $bookingPrice * 100,
-            "currency" => "sgd",
-            "customer" => $customer->id
-        ));
-
-print_r($charge);
-
-if (!isset($charge)) {
-    echo "<script>alert('Unsuccesful payment')</script>";
-    header("Location: makePayment.php?payment_id=$paymentID");
-}
-?>

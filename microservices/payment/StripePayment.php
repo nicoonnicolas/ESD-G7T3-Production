@@ -9,16 +9,6 @@ if (isset($_SESSION['mobile_number'])) {
     exit();
 }
 
-$HOST = "localhost";
-$USERNAME = "root";
-$PASSWORD = "";
-$DB = "g7t3_payment";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
-if (!$link) {
-    die(mysqli_error($link));
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -54,17 +44,10 @@ if (!$link) {
             <?php 
                 
                 if(isset($_SESSION['mobile_number'])){
-                    $paymentID = $_POST['payment_id'];
-                    $query = "SELECT * FROM payment "
-                            . "WHERE payment_id = '$paymentID' ";
-                    // echo $query;
-                    $result = mysqli_query($link, $query);
-                
-                    $row = mysqli_fetch_assoc($result);
 
-                    $payment_id = $row['payment_id'];
-                    $booking_id = $row['booking_id'];
-                    $booking_price = $row['booking_price'];
+                    $payment_id = $_POST['payment_id'];
+                    $booking_id = $_POST['booking_id'];
+                    $booking_price = $_POST['booking_price'];
                     
                     echo "<h3> Booking ID: $booking_id</h3>";
                     echo "<h3> Total amount payable: $$booking_price</h3>";
@@ -105,17 +88,10 @@ if (!$link) {
                 <?php 
                 
                 if(isset($_SESSION['mobile_number'])){
-                    $paymentID = $_POST['payment_id'];
-                    $query = "SELECT * FROM payment "
-                            . "WHERE payment_id = '$paymentID' ";
-                    // echo $query;
-                    $result = mysqli_query($link, $query);
-                
-                    $row = mysqli_fetch_assoc($result);
 
-                    $payment_id = $row['payment_id'];
-                    $booking_id = $row['booking_id'];
-                    $booking_price = $row['booking_price'];
+                    $payment_id = $_POST['payment_id'];
+                    $booking_id = $_POST['booking_id'];
+                    $booking_price = $_POST['booking_price'];
                     // echo $row['payment_id'];
                     // echo $row['booking_id'];
                     // echo $row['booking_price'];
