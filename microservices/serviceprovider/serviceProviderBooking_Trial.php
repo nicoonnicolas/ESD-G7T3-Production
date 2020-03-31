@@ -37,7 +37,7 @@ $providerMobile = $_SESSION['provider_mobile'];
         </script>
     </head>
     <body>
-        <?php include("header.php") ?>  
+        <?php include("../../app/globalSPHeader.php")?> 
         <h1 class="display-4" style="text-align: center">Service Providers</h1>
         <div id="main_container" class="container">
             <table id="booking_table" class='table table-striped' border='1'>
