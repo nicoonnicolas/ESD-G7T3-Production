@@ -35,9 +35,10 @@ echo $result;
 
 if ($result) {
         echo "<script> alert('Redirecting to payment gateway') </script>";
-        header("Location: ../payment/StripePayment.php?payment_id=$paymentID");
+        //header("Location: ../booking/booking.php");
 }   else {
     echo "<script> alert('Unsuccesful la fuck ') </script>";
+    
     // $message = '<a href="booking.php">Return to previous page</a></h4>';
 }
 

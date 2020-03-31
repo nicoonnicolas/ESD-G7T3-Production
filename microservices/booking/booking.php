@@ -112,7 +112,7 @@ if (isset($_SESSION['mobile_number'])) {
                         if (booking.booking_payment_status === 0) {
                             eachRow +=
                             "<td>" + 
-                                "<form action = 'makePayment.php' method = 'post'>" +
+                                "<form action = '../payment/StripePayment.php' method = 'post'>" +
                                     "<input type='hidden' name='payment_id' value='" + booking.booking_id + "'/>" +
                                     "<input type='hidden' name='customer_mobile' value='<?php echo $customerMobile ?>'/>" +
                                     "<input type='hidden' name='provider_name' value='" + booking.provider_name + "'/>" + 

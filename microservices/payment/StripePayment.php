@@ -54,7 +54,7 @@ if (!$link) {
             <?php 
                 
                 if(isset($_SESSION['mobile_number'])){
-                    $paymentID = $_GET['payment_id'];
+                    $paymentID = $_POST['payment_id'];
                     $query = "SELECT * FROM payment "
                             . "WHERE payment_id = '$paymentID' ";
                     // echo $query;
@@ -105,7 +105,7 @@ if (!$link) {
                 <?php 
                 
                 if(isset($_SESSION['mobile_number'])){
-                    $paymentID = $_GET['payment_id'];
+                    $paymentID = $_POST['payment_id'];
                     $query = "SELECT * FROM payment "
                             . "WHERE payment_id = '$paymentID' ";
                     // echo $query;

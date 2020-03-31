@@ -1,3 +1,10 @@
+<?php 
+$HOST = "localhost";
+$USERNAME = "root";
+$PASSWORD = "";
+$DB = "g7t3_booking";
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
+?>
 <html> 
 
     <head>
@@ -131,6 +138,6 @@ print_r($charge);
 
 if (!isset($charge)) {
     echo "<script>alert('Unsuccesful payment')</script>";
-    header("Location: StripePayment.php?payment_id=$paymentID");
+    header("Location: makePayment.php?payment_id=$paymentID");
 }
 ?>
