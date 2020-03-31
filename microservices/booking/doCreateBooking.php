@@ -15,7 +15,7 @@ $DB = "g7t3_booking";
 $link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
 if (!$link) {
     die(mysqli_error($link));
-}
+}   
 
 $message = "";
 $customerMobile = $_POST['customer_mobile'];
