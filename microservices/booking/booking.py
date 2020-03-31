@@ -145,6 +145,26 @@ def updateBookingStatus(booking_id):
         return jsonify({"message":"An error occurred updating the booking status"}), 500
     return jsonify(booking.json()), 201
 
+@app.route("/booking/payment/<string:booking_id>", methods=['POST'])
+def updatePaymentStatus(booking_id):
+    if(not(Booking.query.filter_by(booking_id=booking_id).first())):
+        return jsonify({
+            "message":
+            "A booking with Booking ID '{}' does not exists.".format(
+                booking_id)
+        }), 400
+    try:
+        booking = Booking.query.filter_by(booking_id = booking_id).first()
+        booking.booking_payment_status = 1
+        db.session.commit()
+    except:
+        return jsonify(
+            {
+                "message":"An error occurred updating the payment status"
+            }
+        ), 500
+    return jsonify(booking.json()), 201
+
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.debug = True
     app.run(host='0.0.0.0', port=1002, debug=True)

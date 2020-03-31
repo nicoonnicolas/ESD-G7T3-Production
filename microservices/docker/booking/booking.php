@@ -65,11 +65,11 @@ if (isset($_SESSION['mobile_number'])) {
     $customerMobile = $_SESSION['mobile_number'];
     ?>
                 var customerMobile = <?php echo $customerMobile ?>;
-                var serviceURL = "http://172.20.10.3:9999/booking/";
+                var serviceURL = "http://127.0.0.1:9999/booking/";
                 serviceURL = serviceURL + customerMobile;
 <?php } else {
     ?>
-                var serviceURL = "http://172.20.10.3:9999/booking";
+                var serviceURL = "http://127.0.0.1:9999/booking";
 <?php }
 ?>
             console.log(serviceURL);
