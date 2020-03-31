@@ -20,7 +20,7 @@ if (!$link) {
 <html>
     <head>
         <title>Bookings</title>
-        <?php include("../../app/globalCSS.php"); ?>
+        <?php include("../../../app/globalCSS.php"); ?>
 
         <style>
             .container-fluid {
@@ -29,7 +29,7 @@ if (!$link) {
         </style>
 
     <body>
-        <?php include("../../app/globalCustomerHeader.php"); ?>
+        <?php include("../../../app/globalCustomerHeader.php"); ?>
         <div class="container-fluid">
             <div class="row">
                 <h1 class="display-4">Bookings</h1>          
@@ -65,11 +65,11 @@ if (isset($_SESSION['mobile_number'])) {
     $customerMobile = $_SESSION['mobile_number'];
     ?>
                 var customerMobile = <?php echo $customerMobile ?>;
-                var serviceURL = "http://127.0.0.1:1002/booking/";
+                var serviceURL = "http://127.0.0.1:9999/booking/";
                 serviceURL = serviceURL + customerMobile;
 <?php } else {
     ?>
-                var serviceURL = "http://127.0.0.1:1002/booking";
+                var serviceURL = "http://127.0.0.1:9999/booking";
 <?php }
 ?>
             console.log(serviceURL);
