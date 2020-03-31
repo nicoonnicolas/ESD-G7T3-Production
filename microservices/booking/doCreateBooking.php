@@ -12,10 +12,10 @@ $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
 $DB = "g7t3_booking";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3306");
 if (!$link) {
     die(mysqli_error($link));
-}   
+}
 
 $message = "";
 $customerMobile = $_POST['customer_mobile'];
@@ -31,9 +31,9 @@ $query = "INSERT INTO booking (customer_mobile, provider_mobile, provider_name, 
         . "VALUES ('$customerMobile','$providerMobile', '$providerName', '$providerService', '$providerTime', '$providerDay', '$providerPrice', 0)";
 $result = mysqli_query($link, $query);
 if ($result) {
-        echo "<script> alert('You have created a booking.') </script>";
-        header("Location: ../booking/booking.php?mobile_number=$customerMobile");
-}   else {
+    echo "<script> alert('You have created a booking.') </script>";
+    header("Location: ../booking/booking.php?mobile_number=$customerMobile");
+} else {
     echo "<script> alert('Unsuccesful la fuck ') </script>";
     // $message = '<a href="booking.php">Return to previous page</a></h4>';
 }
@@ -42,11 +42,9 @@ if ($result) {
 
 // echo $customerMobile; echo $providerMobile; echo $providerService;
 // echo "im so cute";
-
 // Add into using microservice booking.py
 // Change the booking id to AI.
 // Change provider service last row to customer mobile. 
 // Status (case close, can add review)
 // Provider Service needs to be added. 
-
 ?>
