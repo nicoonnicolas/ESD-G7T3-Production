@@ -7,7 +7,7 @@ if (isset($_GET['booking_id'])) {
 $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
-$DB = "g7t3_booking";
+$DB = "g7t3_review";
 $link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3306");
 if (!$link) {
     die(mysqli_error($link));
@@ -15,9 +15,12 @@ if (!$link) {
 
 if (isset($_GET['booking_id'])) {
     $bookingID = $_GET['booking_id'];
-    $query = "SELECT * FROM booking WHERE booking_id = $bookingID";
+    $query = "SELECT * FROM review WHERE booking_id = $bookingID";
+//    echo $query;
     $result = mysqli_query($link, $query);
-    if ($result) {
+    $count = mysqli_num_rows($result);
+//    echo $count;
+    if ($count != 0) {
         echo "<script> alert('Review has already been inserted! No more actions required.') </script>";
         echo "<script> window.location.replace('../booking/booking.php'); </script>";
     }
@@ -107,17 +110,8 @@ if (isset($_GET['booking_id'])) {
                                     });
                     console.log(response);
                     const data = await response.json();
-                    //var books = data; //the arr is in v.books of the JSON data
-                    // array or array.length are falsy
-                    //console.log(books);
-                    //console.log(books.message);
-                    //if(books.message != undefined) {
-                    //    $('.errormsg').remove(); 
-                    //    $('#booksTable').hide();
-                    //    showError('Books list empty or undefined.');
-                    //}
-
-
+                    alert("Review Successfully Added!");
+                    window.location.replace("../../app/index.php");
                 } catch (error) {
                     $('.errormsg').remove();
                     // Errors when calling the service; such as network error, 
