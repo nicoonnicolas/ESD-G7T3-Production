@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title">View Bookings</h5>
                         <p class="card-text">Click here to view booking information</p>
-                        <a href="../booking/booking.php" class="btn btn-primary">View Bookings</a>
+                        <a href="../serviceprovider/serviceProviderBooking_Trial.php" class="btn btn-primary">View Bookings</a>
                     </div>
                 </div>
             </div>
