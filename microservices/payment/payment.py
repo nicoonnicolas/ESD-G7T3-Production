@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask (__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3308/g7t3_payment'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/g7t3_payment'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -16,18 +16,20 @@ class Payment(db.Model):
     payment_id = db.Column(db.Integer, primary_key=True)
     booking_id = db.Column(db.Integer, primary_key=False)
     booking_price = db.Column(db.Float(precision=2), nullable=False)
-    
+    provider_mobile = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, payment_id, booking_id, booking_price):
+    def __init__(self, payment_id, booking_id, booking_price, provider_mobile):
         self.payment_id = payment_id
         self.booking_id = booking_id
         self.booking_price = booking_price
+        self.provider_mobile = provider_mobile
     
     def json(self):
         return {
         "payment_id": self.payment_id, 
         "booking_id": self.booking_id,
-        "booking_price": self.booking_price
+        "booking_price": self.booking_price,
+        "provider_mobile": self.provider_mobile
         }
 
 @app.route("/payment")         
@@ -63,6 +65,15 @@ def createPayment(payment_id):
         return jsonify({"message": "An error occurred creating the payment."}), 500
 
     return jsonify(payment.json()), 201
+
+@app.route("/payment/provider/<string:provider_mobile>", methods=['GET'])
+def getPaymentByProvider(provider_mobile):
+    return jsonify({
+        "payments": [
+            payment.json() for payment in Payment.query.filter_by(provider_mobile = provider_mobile)
+        ]
+        })
+    
 
 if __name__ == "__main__":  # to run this application with out having the name app.py
     app.run(host='127.0.0.1', port=1007, debug=True)
