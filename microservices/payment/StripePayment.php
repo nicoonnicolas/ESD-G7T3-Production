@@ -61,7 +61,7 @@ if (isset($_SESSION['mobile_number'])) {
                     $booking_id = $_POST['booking_id'];
                     $booking_price = $_POST['booking_price'];
                     $service_provider_name = $_POST['provider_name'];
-                    $provider_mobile = $_POST['$provider_mobile'];
+                    $provider_mobile = $_POST['provider_mobile'];
                     // echo $row['payment_id'];
                     // echo $row['booking_id'];
                     // echo $row['booking_price'];
