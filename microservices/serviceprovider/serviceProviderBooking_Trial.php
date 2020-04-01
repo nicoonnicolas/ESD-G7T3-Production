@@ -38,14 +38,14 @@ $providerMobile = $_SESSION['provider_mobile'];
     </head>
     <body>
         <?php include("../../app/globalSPHeader.php")?> 
-        <h1 class="display-4" style="text-align: center">Service Providers</h1>
+        <h1 class="display-4" style="text-align: center">Service Provider Bookings</h1>
         <div id="main_container" class="container">
             <table id="booking_table" class='table table-striped' border='1'>
                 <thead class='thead-dark'>
                     <tr>
+                        <th>Booking ID</th>
                         <th>Customer Mobile</th>
                         <th>Customer Name</th>
-                        <th>Services Provided</th>
                         <th>Time</th>
                         <th>Day</th>
                         <th>Price</th>
@@ -88,9 +88,9 @@ if (isset($_SESSION['provider_mobile'])) {
                             customerName = "Customer Name";
                             if (booking.booking_status === 1) {
                                 eachRow =
-                                        "<td>" + booking.booking_id + "</td>" +
-                                        "<td>" + customerName + "</td>" +
+                                         "<td>" + booking.booking_id + "</td>" +
                                         "<td>" + booking.customer_mobile + "</td>" +
+                                        "<td>" + booking.customer_name + "</td>" +
                                         "<td>" + booking.booking_time + "</td>" +
                                         "<td>" + booking.booking_date + "</td>" +
                                         "<td> $" + booking.booking_price + "</td>" +
@@ -98,8 +98,8 @@ if (isset($_SESSION['provider_mobile'])) {
                             } else {
                                 eachRow =
                                         "<td>" + booking.booking_id + "</td>" +
-                                        "<td>" + customerName + "</td>" +
                                         "<td>" + booking.customer_mobile + "</td>" +
+                                        "<td>" + booking.customer_name + "</td>" +
                                         "<td>" + booking.booking_time + "</td>" +
                                         "<td>" + booking.booking_date + "</td>" +
                                         "<td> $" + booking.booking_price + "</td>" +

@@ -16,6 +16,7 @@ class Booking(db.Model):
     __tablename__ = 'booking'
 
     booking_id = db.Column(db.Integer, primary_key=True)
+    customer_name = db.Column(db.String(64), nullable=False)
     customer_mobile = db.Column(db.String(8), nullable=False)
     provider_mobile = db.Column(db.String(8), nullable=False)
     provider_name = db.Column(db.String(128), nullable=True)
@@ -25,7 +26,7 @@ class Booking(db.Model):
     booking_status = db.Column(db.Integer, nullable=False)
     booking_payment_status= db.Column(db.Integer, nullable=False)
 
-    def __init__(self, booking_id, customer_mobile, provider_mobile, provider_name,
+    def __init__(self, booking_id, customer_name,customer_mobile, provider_mobile, provider_name,
                  booking_time, booking_date, booking_price, booking_status, booking_payment_status):
         self.booking_id = booking_id
         self.customer_mobile = customer_mobile
@@ -36,6 +37,7 @@ class Booking(db.Model):
         self.booking_price = booking_price
         self.booking_status = booking_status
         self.booking_payment_status = booking_payment_status
+        self.customer_name = customer_name
 
     def json(self):
         return {
@@ -47,7 +49,8 @@ class Booking(db.Model):
             "booking_date": self.booking_date,
             "booking_price": self.booking_price,
             "booking_status": self.booking_status,
-            "booking_payment_status": self.booking_payment_status
+            "booking_payment_status": self.booking_payment_status,
+            "customer_name": self.customer_name
         }
 
 

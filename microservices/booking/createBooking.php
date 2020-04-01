@@ -25,6 +25,17 @@ if (isset($_SESSION['mobile_number'])) {
 
 <body>
     <?php include("../../app/globalCustomerHeader.php"); ?>
+    <table id = "hidden_table">
+        <tr id='hidden_customer_name'>
+            <td>
+                Customer Name:
+            </td>
+            <td id='customer_name_in_table'>
+                
+            </td>
+        </tr>
+    </table>
+
     <div class="container-fluid">
         <div class="row">
             <h1 class="display-4">Create Booking</h1>          
@@ -33,7 +44,7 @@ if (isset($_SESSION['mobile_number'])) {
                 <thead>
                     <tr>
                     <th>Service Provider</th>
-                    <th>Contact Number</th>
+                    <th>Name</th>
                     <th>Services Provided</th>
                     <th>Time</th>
                     <th>Day</th>
@@ -76,60 +87,96 @@ if (isset($_SESSION['mobile_number'])) {
         $("#service_table").hide();
         $("#main_container").append("<label>" + message + "</label>");
     }
-    $(async () => {
-        var serviceURL = "http://127.0.0.1:1001/serviceprovider_trial";
-        try {
-            const response = await fetch(serviceURL, {
-                method: "GET"
-            });
-            console.log(response);
-            const data = await response.json();
-            console.log(data);
-            var serviceProviders = data.serviceProviders;
-            console.log(serviceProviders);
+    $( document ).ready(function() {
+        $(async () => {
+            var serviceURL = "http://127.0.0.1:1001/serviceprovider_trial";
+            try {
+                const response = await fetch(serviceURL, {
+                    method: "GET"
+                });
+                console.log(response);
+                const data = await response.json();
+                console.log(data);
+                var serviceProviders = data.serviceProviders;
+                console.log(serviceProviders);
 
-            if (!serviceProviders || !serviceProviders.length) {
-                showError("No Service Providers Found!");
-            } else {
-                var rows = "";
-                for (const serviceProvider of serviceProviders) {
-                    var eachRow =
-                        "<td>" + serviceProvider.provider_mobile + "</td>" +
-                        "<td>" + serviceProvider.provider_name + "</td>" +
-                        "<td>" + serviceProvider.provider_service + "</td>" +
-                        "<td>" + serviceProvider.provider_time + "</td>" +
-                        "<td>" + serviceProvider.provider_day + "</td>" +
-                        "<td>" + serviceProvider.provider_price + "</td>" +
-                        "<td>" +
-                        "<form action='doCreateBooking.php' method='POST'>" +
-                        "<input type='hidden' name='customer_mobile' value='<?php echo $customerMobile ?>'/>" +
-                        "<input type='hidden' name='provider_name' value='" + serviceProvider
-                        .provider_name + "'/>" +
-                        "<input type='hidden' name='provider_mobile' value='" + serviceProvider
-                        .provider_mobile + "'/>" +
-                        "<input type='hidden' name='provider_name' value='" + serviceProvider
-                        .provider_name + "'/>" +
-                        "<input type='hidden' name='provider_time' value='" + serviceProvider
-                        .provider_time + "'/>" +
-                        "<input type='hidden' name='provider_day' value='" + serviceProvider.provider_day +
-                        "'/>" +
-                        "<input type='hidden' name='provider_service' value='" + serviceProvider
-                        .provider_service + "'/>" +
-                        "<input type='hidden' name='provider_price' value='" + serviceProvider
-                        .provider_price + "'/>" +
-                        "<input type='submit' value='Book' /></form>" +
-                        "</td>"
-                        ;
+                if (!serviceProviders || !serviceProviders.length) {
+                    showError("No Service Providers Found!");
+                } else {
+                    var rows = "";
+                    var customer_name = document.getElementById('customer_name_in_table').innerHTML;
+                    console.log(customer_name);
+                    for (const serviceProvider of serviceProviders) {
+                        var eachRow =
+                            "<td>" + serviceProvider.provider_mobile + "</td>" +
+                            "<td>" + serviceProvider.provider_name + "</td>" +
+                            "<td>" + serviceProvider.provider_service + "</td>" +
+                            "<td>" + serviceProvider.provider_time + "</td>" +
+                            "<td>" + serviceProvider.provider_day + "</td>" +
+                            "<td>" + serviceProvider.provider_price + "</td>" +
+                            "<td>" +
+                            "<form action='doCreateBooking.php' method='POST'>" +
+                            "<input type='hidden' name='customer_mobile' value='<?php echo $customerMobile ?>'/>" +
+                            "<input type='hidden' name='provider_name' value='" + serviceProvider
+                            .provider_name + "'/>" +
+                            "<input type='hidden' name='provider_mobile' value='" + serviceProvider
+                            .provider_mobile + "'/>" +
+                            "<input type='hidden' name='provider_name' value='" + serviceProvider
+                            .provider_name + "'/>" +
+                            "<input type='hidden' name='provider_time' value='" + serviceProvider
+                            .provider_time + "'/>" +
+                            "<input type='hidden' name='provider_day' value='" + serviceProvider.provider_day +
+                            "'/>" +
+                            "<input type='hidden' name='provider_service' value='" + serviceProvider
+                            .provider_service + "'/>" +
+                            "<input type='hidden' name='provider_price' value='" + serviceProvider
+                            .provider_price + "'/>" +
+                            "<input type='hidden' name='customer_name' value='" + customer_name
+                            + "'/>" +
+                            "<input type='submit' value='Book' /></form>" +
+                            "</td>"
+                            ;
 
-                    rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                        rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                    }
+                    $("#service_table").append(rows);
                 }
-                $("#service_table").append(rows);
+            } catch (error) {
+                showError("There is a problem retrieving service provider data, please try again later.<br>" +
+                    error);
             }
-        } catch (error) {
-            showError("There is a problem retrieving service provider data, please try again later.<br>" +
-                error);
-        }
+        });
     });
     </script>
 
+<script>
+        // Handler for .ready() called.
+    $(async() => {
+        var serviceURL = "http://127.0.0.1:1000/customer_amqp";
+        try {
+            const response = await fetch(serviceURL, {method: "GET"});
+            const data = await response.json();
+            var customers = data.customers;
+            // console.log(customers);
+
+                for (const customer of customers) {
+                    if(customer.customer_mobile == <?php echo $customerMobile ?>){
+                        // console.log(customer.customer_name);
+                        document.getElementById('customer_name_in_table').innerHTML = customer.customer_name;
+                    }     
+            }
+        } catch (error) {
+            alert('There is an error');
+        }
+
+        $("#hidden_table").hide();
+
+});
+</script>
+<table hidden >
+    <tr>
+        <th>customer mobile</th>
+        <th></th>
+    </tr>
+</table>
 </html>
