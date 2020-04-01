@@ -47,7 +47,7 @@ if (isset($_SESSION['mobile_number'])) {
             Provider</a>
     </div>
 
-    <!-- <!-- <h1 class="display-4" style="padding-left: 10%;">Create Booking</h1>
+    <!--  <h1 class="display-4" style="padding-left: 10%;">Create Booking</h1>
     <div id="main-container" class="container">
         <table id="service_table" class='table table-striped' border='1'>
             <thead class='thead-dark'>
