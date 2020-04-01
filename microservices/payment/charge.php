@@ -63,11 +63,12 @@ if(isset($charge)){
   $paymentID = $_POST['payment_id'];
   $bookingPrice = $_POST['booking_price'];
   $bookingID = $_POST['booking_id'];
+  $providerMobile = $_POST['provider_mobile'];
   // echo $paymentID;
   // echo $bookingPrice;
 
-  $query = "INSERT INTO payment (payment_id, booking_id, booking_price) "
-          . "VALUES ('$paymentID','$bookingID', '$bookingPrice')";
+  $query = "INSERT INTO payment (payment_id, booking_id, booking_price, provider_mobile) "
+          . "VALUES ('$paymentID','$bookingID', $bookingPrice, '$providerMobile')";
 
   $result = mysqli_query($link, $query);
   // echo $result;
