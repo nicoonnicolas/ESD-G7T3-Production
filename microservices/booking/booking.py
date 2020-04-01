@@ -102,32 +102,32 @@ def createBooking(booking_id):
     return jsonify(booking.json()), 201
 
 
-@app.route("/booking/update/<string:booking_id>", methods=['POST'])
-def updateCustomer(booking_id):
-    if (not (Booking.query.filter_by(booking_id=booking_id).first())):
-        return jsonify({
-            "message":
-            "A booking with Booking ID '{}' does not exists.".format(
-                booking_id)
-        }), 400
+# @app.route("/booking/update/<string:booking_id>", methods=['POST'])
+# def updateCustomer(booking_id):
+#     if (not (Booking.query.filter_by(booking_id=booking_id).first())):
+#         return jsonify({
+#             "message":
+#             "A booking with Booking ID '{}' does not exists.".format(
+#                 booking_id)
+#         }), 400
 
-    data = request.get_json()
-    booking = Booking(booking_id, **data)
+#     data = request.get_json()
+#     booking = Booking(booking_id, **data)
 
-    try:
+#     try:
 
-        booking = Booking.query.filter_by(booking_id=booking_id).first()
-        booking.booking_date = data['booking_date']
-        booking.booking_time = data['booking_time']
-        booking.customer_mobile = data['customer_mobile']
-        booking.provider_mobile = data['provider_mobile']
-        booking.booking_price = data['booking_price']
-        db.session.commit()
-    except:
-        return jsonify({"message":
-                        "An error occurred updating the booking."}), 500
+#         booking = Booking.query.filter_by(booking_id=booking_id).first()
+#         booking.booking_date = data['booking_date']
+#         booking.booking_time = data['booking_time']
+#         booking.customer_mobile = data['customer_mobile']
+#         booking.provider_mobile = data['provider_mobile']
+#         booking.booking_price = data['booking_price']
+#         db.session.commit()
+#     except:
+#         return jsonify({"message":
+#                         "An error occurred updating the booking."}), 500
 
-    return jsonify(booking.json()), 201
+#     return jsonify(booking.json()), 201
 
 @app.route("/booking/status/<string:booking_id>", methods=['POST'])
 def updateBookingStatus(booking_id):

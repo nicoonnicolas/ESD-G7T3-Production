@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Mar 31, 2020 at 06:36 AM
--- Server version: 8.0.18
--- PHP Version: 7.3.12
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 31, 2020 at 09:39 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,16 +44,24 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `booking_status` int(1) DEFAULT NULL,
   `booking_payment_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`booking_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50000021 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50000029 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`booking_id`, `customer_mobile`, `provider_mobile`, `provider_name`, `provider_service`, `booking_time`, `booking_date`, `booking_price`, `booking_status`, `booking_payment_status`) VALUES
-(50000018, '91239123', '1', 'Agnes Lam', 'Feeding', '18:00', 'fri', 45.00, 0, 0),
-(50000019, '91239123', '2', 'Nicolas Wijaya', 'Strumming', '19:00', 'fri', 35.67, 0, 0),
-(50000020, '91239123', '2', 'Nicolas Wijaya', '2', '16:20', 'tue', 16.20, 0, 0);
+(50000018, '91239123', '1', 'Agnes Lam', 'Feeding', '18:00', 'fri', 45.00, 0, 1),
+(50000019, '91239123', '2', 'Nicolas Wijaya', 'Strumming', '19:00', 'fri', 35.67, 1, 1),
+(50000020, '91239123', '2', 'Nicolas Wijaya', '2', '16:20', 'tue', 16.20, 0, 1),
+(50000021, '91239123', '3', 'Chantel', 'Boy Breaker', '18:38', 'tue', 99.99, 0, 1),
+(50000022, '91239123', '5', 'Pei Yi', 'Girlfriend Service', '18:47', 'sun', 18.47, 0, 1),
+(50000023, '91239123', '4', 'Ming Miao', 'Stress', '18:42', 'mon', 18.42, 0, 1),
+(50000024, '91239123', '2', 'Nicolas Wijaya', 'Fingerstyle', '16:21', 'tue', 16.21, 0, 1),
+(50000025, '91239123', '2', 'Nicolas Wijaya', 'Er Hu', '18:06', 'tue', 18.06, 0, 1),
+(50000026, '91239123', '2', 'Nicolas Wijaya', 'Strumming', '19:00', 'fri', 35.67, 1, 1),
+(50000027, '91239123', '3', 'Chantel', 'Disappoint Boys', '18:41', 'tue', 18.41, 0, 1),
+(50000028, '91239123', '2', 'Nicolas Wijaya', 'Fingerstyle', '16:21', 'tue', 16.21, 1, 1);
 --
 -- Database: `g7t3_customer`
 --
@@ -113,7 +121,10 @@ INSERT INTO `payment` (`payment_id`, `booking_id`, `booking_price`) VALUES
 (50000014, 50000014, 36),
 (50000015, 50000015, 100),
 (50000016, 50000016, 18),
-(50000017, 50000017, 18);
+(50000017, 50000017, 18),
+(50000018, 50000018, 45),
+(50000019, 50000019, 36),
+(50000020, 50000020, 16);
 --
 -- Database: `g7t3_review`
 --
@@ -140,43 +151,9 @@ CREATE TABLE IF NOT EXISTS `review` (
 --
 
 INSERT INTO `review` (`booking_id`, `review_star`, `review_comment`) VALUES
-(50000001, 1, 'bad svc'),
-(50000002, 5, 'Hehe Haha'),
-(50000006, 5, 'Good gf svc.');
---
--- Database: `g7t3_serviceprovider`
---
-DROP DATABASE IF EXISTS `g7t3_serviceprovider`;
-CREATE DATABASE IF NOT EXISTS `g7t3_serviceprovider` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `g7t3_serviceprovider`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `serviceprovider`
---
-
-DROP TABLE IF EXISTS `serviceprovider`;
-CREATE TABLE IF NOT EXISTS `serviceprovider` (
-  `provider_mobile` varchar(8) NOT NULL,
-  `provider_name` varchar(128) NOT NULL,
-  `provider_service1` varchar(256) NOT NULL,
-  `provider_service2` varchar(256) DEFAULT NULL,
-  `provider_service3` varchar(256) DEFAULT NULL,
-  `provider_price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`provider_mobile`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `serviceprovider`
---
-
-INSERT INTO `serviceprovider` (`provider_mobile`, `provider_name`, `provider_service1`, `provider_service2`, `provider_service3`, `provider_price`) VALUES
-('54444442', 'Testing Add', 'HP', 'Lenovo', 'Logitech', '800.10'),
-('65544444', 'Sun Dogs', 'Sun Tanning', 'Makan', 'Alcohol', '234.66'),
-('65553333', '12345678', 'Pur', 'Bark', '', '45.60'),
-('90000000', 'Impawssible', 'Showering', 'Petting', '', '25.99'),
-('98765432', 'What The Fluff', 'Showering ', 'Blowing', 'Feeding', '50.01');
+(50000019, 1, 'Testing'),
+(50000026, 1, 'Not good service.'),
+(50000028, 4, 'Very good all is working.');
 --
 -- Database: `g7t3_serviceprovidertrial`
 --
@@ -193,11 +170,11 @@ USE `g7t3_serviceprovidertrial`;
 DROP TABLE IF EXISTS `serviceprovider_trial`;
 CREATE TABLE IF NOT EXISTS `serviceprovider_trial` (
   `provider_mobile` varchar(8) NOT NULL COMMENT 'Serial number for the service provider.',
-  `provider_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `provider_name` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
   `provider_price` decimal(10,2) NOT NULL,
   `provider_time` varchar(5) NOT NULL,
   `provider_day` varchar(3) NOT NULL,
-  `provider_service` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `provider_service` varchar(128) CHARACTER SET utf8mb4 NOT NULL,
   PRIMARY KEY (`provider_mobile`,`provider_service`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
