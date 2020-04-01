@@ -119,6 +119,7 @@ if (isset($_SESSION['mobile_number'])) {
                                     "<input type='hidden' name='booking_price' value='" + booking.booking_price + "'/>" +
                                     "<input type='hidden' name='booking_id' value='" + booking.booking_id + "'/>" + 
                                     "<input type='hidden' name='service_provided' value='" + booking.booking_price + "'/>" +
+                                    "<input type='hidden' name='provider_mobile' value='" + booking.provider_mobile + "'/>" +
                                     "<input type='submit' class = 'btn btn-primary'  value='Not Paid' />"
                                 + "</form>" 
                             + "</td>"
