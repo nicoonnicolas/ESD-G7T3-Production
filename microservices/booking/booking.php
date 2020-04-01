@@ -10,7 +10,7 @@ $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
 $DB = "g7t3_serviceprovidertrial";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3306");
 if (!$link) {
     die(mysqli_error($link));
 }
