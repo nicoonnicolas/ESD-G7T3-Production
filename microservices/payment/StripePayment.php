@@ -61,6 +61,7 @@ if (isset($_SESSION['mobile_number'])) {
                     $booking_id = $_POST['booking_id'];
                     $booking_price = $_POST['booking_price'];
                     $service_provider_name = $_POST['provider_name'];
+                    $provider_mobile = $_POST['$provider_mobile'];
                     // echo $row['payment_id'];
                     // echo $row['booking_id'];
                     // echo $row['booking_price'];
@@ -68,6 +69,7 @@ if (isset($_SESSION['mobile_number'])) {
                     echo "<input type = 'hidden' name='booking_id' value=$booking_id id='booking_id'>";
                     echo "<input type = 'hidden' name='booking_price' value=$booking_price id='booking_price'>";
                     echo "<input type = 'hidden' name='service_provider_name' value=$service_provider_name id='service_provider_name'>";
+                    echo "<input type = 'hidden' name='provider_mobile' value=$provider_mobile id='provider_mobile'>";
                 }
                 ?> 
                 <button>Submit Payment</button>
