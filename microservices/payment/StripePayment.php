@@ -31,12 +31,14 @@ if (isset($_SESSION['mobile_number'])) {
                 $payment_id = $_POST['payment_id'];
                 $booking_id = $_POST['booking_id'];
                 $booking_price = $_POST['booking_price'];
+                $service_provider_name = $_POST['provider_name'];
+
                 echo "<h3> Booking ID: $booking_id</h3>";
+                echo "<h3> Service Provider Name: $service_provider_name</h3>";
                 echo "<h3> Total amount payable: $$booking_price</h3>";
             }
             ?> 
             <form action="charge.php" method="post" id="payment-form">
-                <h1 class = "display-4">Billing Address</h1>
                 <div class="form-row">
                     <h1 class = "display-4">Payment Details</h1>
                     <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
@@ -58,12 +60,14 @@ if (isset($_SESSION['mobile_number'])) {
                     $payment_id = $_POST['payment_id'];
                     $booking_id = $_POST['booking_id'];
                     $booking_price = $_POST['booking_price'];
+                    $service_provider_name = $_POST['provider_name'];
                     // echo $row['payment_id'];
                     // echo $row['booking_id'];
                     // echo $row['booking_price'];
                     echo "<input type = 'hidden' name='payment_id' value= $payment_id id='payment_id'>";
                     echo "<input type = 'hidden' name='booking_id' value=$booking_id id='booking_id'>";
                     echo "<input type = 'hidden' name='booking_price' value=$booking_price id='booking_price'>";
+                    echo "<input type = 'hidden' name='service_provider_name' value=$service_provider_name id='service_provider_name'>";
                 }
                 ?> 
                 <button>Submit Payment</button>
