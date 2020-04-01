@@ -8,13 +8,13 @@ if (isset($_SESSION['mobile_number'])) {
     exit();
 }
 
-echo $_POST['customer_name'];
+// echo $_POST['customer_name'];
 
 $HOST = "localhost";
 $USERNAME = "root";
 $PASSWORD = "";
 $DB = "g7t3_booking";
-$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3308");
+$link = mysqli_connect($HOST, $USERNAME, $PASSWORD, $DB, "3306");
 if (!$link) {
     die(mysqli_error($link));
 }
@@ -35,9 +35,9 @@ $query = "INSERT INTO booking (customer_mobile, customer_name, provider_mobile, 
 $result = mysqli_query($link, $query);
 if ($result) {
     echo "<script> alert('You have created a booking.') </script>";
-    //header("Location: ../booking/booking.php?mobile_number=$customerMobile");
+    header("Location: ../booking/booking.php?mobile_number=$customerMobile");
 } else {
-    echo "<script> alert('Unsuccesful la fuck ') </script>";
+    echo "<script> alert('Unsuccessful...') </script>";
     // $message = '<a href="booking.php">Return to previous page</a></h4>';
 }
 
