@@ -86,6 +86,7 @@ if (isset($_SESSION['provider_mobile'])) {
                         var rows = "";
                         for (const booking of bookings) {
                             customerName = "Customer Name";
+                            var eachRow = "";
                             if (booking.booking_status === 1) {
                                 eachRow =
                                          "<td>" + booking.booking_id + "</td>" +
