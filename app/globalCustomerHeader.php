@@ -47,6 +47,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../review/review.php">Past Reviews</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../customer_amqp/updateCustomer.php">Update Customer Info</a>
+                </li>
                 <a class="nav-item nav-link" href="../doLogout.php">Logout</a>
             </ul>
         </div>
