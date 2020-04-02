@@ -54,15 +54,30 @@ def findCustomerByMobile(customerMobile):
             "Customer not found for mobile number " + str(customerMobile)
         }
 
+@app.route("/customer_amqp/<string:customer_mobile>", methods=['GET'])
+def findCustomer(customer_mobile):
+    customer = [
+        c for c in customersInJSON()["customers"]
+        if c["customer_mobile"] == customer_mobile
+    ]
+    if len(customer) == 1:
+        return customer[0]
+    else:
+        return {
+            "message":
+            "Customer not found for mobile number " + str(customer_mobile)
+        }
 
-def editCustomer(customerMobile, customerName, customerAddress):
-    customer = findCustomerByMobile(customerMobile)
+@app.route("/customer_amqp/<string:customer_mobile>", methods=['POST'])
+def editCustomer(customer_mobile):
+    customer = findCustomerByMobile(customer_mobile)
     if "message" in customer:
         return customer["message"]
     else:
-        customer['customer_mobile'] = customerMobile
-        customer['customer_name'] = customerName
-        customer['customer_address'] = customerAddress
+        data = request.get_json()
+        customer['customer_mobile'] = customer_mobile
+        customer['customer_name'] = data['customer_name']
+        customer['customer_address'] = data['customer_address']
         hostname = "localhost"
         port = 5672
         connection = pika.BlockingConnection(
@@ -127,6 +142,28 @@ def registerCustomer(customer_mobile):
         "customer": customer
     }
     return result
+
+# @app.route("/customer/update/<string:customer_mobile>", methods=['POST'])
+# def updateCustomer(customer_mobile):
+#     if (not(Customer.query.filter_by(customer_mobile=customer_mobile).first())):
+#         return jsonify({
+#             "message": "A customer with Customer ID '{}' does not exists.".format(customer_mobile)
+#             }), 400
+
+#     data = request.get_json()
+#     print(data)
+#     customer = Customer(customer_mobile, **data)
+
+#     try:
+
+#         customer = Customer.query.filter_by(customer_mobile=customer_mobile).first()
+#         customer.customer_name = data['customer_name']
+#         customer.customer_address = data['customer_address']
+#         db.session.commit()
+#     except:
+#         return jsonify({"message": "An error occurred updating the customer."}), 500
+
+#     return jsonify(customer.json()), 201
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0',port=1000, debug=True)
