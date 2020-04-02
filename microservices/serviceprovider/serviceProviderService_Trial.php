@@ -34,27 +34,33 @@ if (isset($_SESSION['provider_mobile'])) {
     </head>
 
     <body>
-        <?php 
-        include("header.php");
-        ?>
+        <?php include("../../app/globalSPHeader.php") ?>
 
         <div id="main-container" class="container">
             <h1 class="display-4" style = "padding-left: 10%;">Add Service Provider</h1>
             <form id='add_service_provider_form' method="post">
                 Service: <br>
-                <input type="text" id="provider_service"> 
+                <input type="text" id="provider_service" size="125"> 
                 <br> 
                 Day of Service: 
                 <br>
-                <input type="text" id="provider_day"> 
+                <select class="form-control" id="provider_day">
+                    <option>mon</option>
+                    <option>tue</option>
+                    <option>wed</option>
+                    <option>thu</option>
+                    <option>fri</option>
+                    <option>sat</option>
+                    <option>sun</option>
+                </select>
                 <br> 
                 Time of Service: 
                 <br>
-                <input type="text" id="provider_time"> 
+                <input type="text" id="provider_time" size="125"> 
                 <br>
                 Price: 
                 <br>
-                <input type="text" id="provider_price"> 
+                <input type="text" id="provider_price" size="125"> 
                 <br>
                 <br>
                 <button id="add_service_provider_btn" type="button" class='btn btn-primary'>
@@ -84,7 +90,7 @@ if (isset($_SESSION['provider_mobile'])) {
                     var providerTime = $('#provider_time').val();
                     var providerPrice = $('#provider_price').val();
                     var providerMobile = <?php echo $providerMobile ?>;
-                    var providerName = <?php echo $providerName?>;
+                    var providerName = <?php echo $providerName ?>;
                     var serviceURL = "http://localhost:1001/serviceprovider_trial/" + providerMobile;
                     console.log(serviceURL);
 
