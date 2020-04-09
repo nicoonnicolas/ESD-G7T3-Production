@@ -34,7 +34,7 @@ if ($result) {
         echo "<script> alert('You have created a booking.') </script>";
         header("Location: ../booking/booking.php?mobile_number=$customerMobile");
 }   else {
-    echo "<script> alert('Unsuccesful la fuck ') </script>";
+    echo "<script> alert('Unsuccesful') </script>";
     // $message = '<a href="booking.php">Return to previous page</a></h4>';
 }
 
