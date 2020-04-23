@@ -1,15 +1,17 @@
 Using Windows 10 Education, extract File into C:\wamp64\www\g7t3_paws
 
-1. There are two main directories used for the application:
-	-> app
-	-> microservices
-		-> booking (in case docker fails)
-		-> customer_amqp
-		-> docker
-			-> booking
-		-> payment
-		-> review
-		-> serviceprovider
+1. There are two main directories used for the application executables:
+	| /app
+	| /microservices
+		| /booking (in case docker fails)
+		| /customer_amqp
+		| /docker
+			| /booking
+		| /payment
+		| /review
+		| /serviceprovider
+		| doLogout.php
+		| land.php
 		
 2. Start Wamp
 	2.1. Go to localhost/phpmyadmin.
@@ -24,7 +26,7 @@ For each microservices/
 		4.1.1. Open 2 command prompts, 1 for to run python customer_amqp.py and the other to run python customer_update_amqp.py
 		4.1.2. Start rabbitmq
 	4.2. /booking
-		4.2.1. Run the docker container
+		4.2.1. Open 1 command prompt, Run the docker container
 	4.3. /payment
 		4.3.1. Open 1 command prompt, run python payment.py
 	4.4. /review
